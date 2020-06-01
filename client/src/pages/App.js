@@ -1,58 +1,50 @@
 import React from "react";
-import axios from "axios";
 import { connect } from "react-redux";
+import M from "materialize-css";
+import BarcodeReader from "./BarcodeReader";
+import "../sass/index.scss";
+
+import Card from "../components/Card";
+import CategoryFilter from "../components/CategoryFilter";
+import Search from "../components/Search";
+
 import { logoutUser } from "../redux/actions/authActions";
+import { getItems } from "../redux/actions/inventoryActions";
 
 class App extends React.Component {
-  state = {
-    products: [],
-  };
-
-  unmounted = false;
-
-  getAll = async () => {
-    let res = await axios.get(`/api/product`);
-    return res.data || [];
-  };
-
-  getProducts = async () => {
-    let res = await this.getAll();
-    if (!this.unmounted) {
-      this.setState({ products: res });
-    }
-  };
-
   componentDidMount() {
-    this.getProducts();
-  }
-
-  componentWillUnmount() {
-    this.unmounted = true;
+    this.props.getItems();
   }
 
   render() {
-    const { products } = this.state;
+    const { categories } = this.props;
 
     return (
-      <div className="App main">
-        <button onClick={this.props.logoutUser}>Log Out</button>
-        <div className="card">
-          <ul>
-            {products && products.length > 0 ? (
-              products.map((product) => (
-                <li key={product._id}>
-                  <h3>{product.name}</h3>
-                  <p>{product.description}</p>
-                </li>
-              ))
-            ) : (
-              <p>No products found</p>
-            )}
-          </ul>
+      <div className="App">
+        <div className="container">
+          <h1 className="center-align">Inventory Manager</h1>
+
+          <div className="row">
+            <div className="col s12 m6">
+              <CategoryFilter categories={categories} />
+            </div>
+            <div className="col s12 m6">
+              <Search />
+            </div>
+          </div>
+
+          <Card categories={categories} />
         </div>
       </div>
     );
   }
 }
 
-export default connect(undefined, { logoutUser })(App);
+const mapStateToProps = ({ inventory }) => ({
+  categories: inventory.categories,
+});
+
+export default connect(mapStateToProps, {
+  logoutUser,
+  getItems,
+})(App);

@@ -11,6 +11,7 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Oops from "./pages/Oops";
 import Error from "./pages/Error";
+import NavBar from "./components/NavBar";
 
 class Router extends React.Component {
   protectedComponent = (needsAuth, fallback) =>
@@ -19,6 +20,7 @@ class Router extends React.Component {
   render() {
     return (
       <BrowserRouter>
+        <NavBar />
         <Switch>
           <PrivateRoute exact path="/" component={App} />
           <NotPrivateRoute exact path="/landing" component={Landing} />

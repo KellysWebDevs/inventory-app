@@ -3,10 +3,10 @@ const routes = express.Router();
 
 // List all routes here.
 // Routes are served in /app.js
-const productRoutes = require("./productRoutes");
+const itemRoutes = require("./itemRoutes");
 const userRoutes = require("./userRoutes");
 
-routes.use("/api/product", productRoutes);
+routes.use("/api/items", itemRoutes);
 routes.use("/api/users", userRoutes);
 
 module.exports = routes;
