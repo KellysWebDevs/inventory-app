@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ITEMS } from "./types";
+import { SET_ITEMS, SET_SEARCH_QUERY } from "./types";
 
 export const getItems = () => (dispatch) => {
   axios
@@ -25,7 +25,48 @@ export const getItems = () => (dispatch) => {
         });
       });
 
-      dispatch({ type: GET_ITEMS, payload: categories });
+      setItems(categories)(dispatch);
     })
     .catch((err) => console.error(err));
+};
+
+export const setItems = (categories) => (dispatch) => {
+  const colorPalette = [
+    "deep-purple",
+    "blue",
+    "pink",
+    "cyan",
+    "red",
+    "green",
+    "purple",
+    "lime",
+    "indigo",
+    "amber",
+    "light-blue",
+    "deep-orange",
+    "teal",
+    "grey",
+    "light-green",
+    "blue-grey",
+    "yellow",
+    "brown",
+    "orange",
+  ];
+  let paletteIndex = 0;
+
+  categories.forEach((category, i) => {
+    if (!colorPalette[paletteIndex]) {
+      paletteIndex = 0;
+    }
+
+    category.color = colorPalette[paletteIndex];
+
+    paletteIndex++;
+  });
+
+  dispatch({ type: SET_ITEMS, payload: categories });
+};
+
+export const setSearchQuery = (query) => (dispatch) => {
+  dispatch({ type: SET_SEARCH_QUERY, payload: query });
 };

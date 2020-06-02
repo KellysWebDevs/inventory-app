@@ -1,17 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 
-class CategoryFilter extends Component {
-  colors = [
-    "red",
-    "deep-purple",
-    "blue",
-    "teal",
-    "lime",
-    "orange",
-    "blue-grey",
-  ];
-  getColor = () => {};
-
+class CategoryFilter extends React.Component {
   render() {
     const { categories } = this.props;
 
@@ -19,7 +8,10 @@ class CategoryFilter extends Component {
       <>
         <h6>Filter by category:</h6>
         {categories.map((category) => (
-          <div key={category.name} className="chip red lighten-4">
+          <div
+            key={category.name}
+            className={`chip ${category.color} lighten-3 ${category.color}-text text-darken-4`}
+          >
             {category.name}
           </div>
         ))}

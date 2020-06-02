@@ -4,12 +4,13 @@ import M from "materialize-css";
 import BarcodeReader from "./BarcodeReader";
 import "../sass/index.scss";
 
-import Card from "../components/Card";
+import CategoryCards from "../components/CategoryCards";
 import CategoryFilter from "../components/CategoryFilter";
 import Search from "../components/Search";
+import SearchTable from "../components/SearchTable";
 
 import { logoutUser } from "../redux/actions/authActions";
-import { getItems } from "../redux/actions/inventoryActions";
+import { getItems, setSearchQuery } from "../redux/actions/inventoryActions";
 
 class App extends React.Component {
   componentDidMount() {
@@ -17,7 +18,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { categories } = this.props;
+    const { categories, searchQuery } = this.props;
 
     return (
       <div className="App">
@@ -29,11 +30,18 @@ class App extends React.Component {
               <CategoryFilter categories={categories} />
             </div>
             <div className="col s12 m6">
-              <Search />
+              <Search
+                setSearchQuery={this.props.setSearchQuery}
+                searchQuery={searchQuery}
+              />
             </div>
           </div>
 
-          <Card categories={categories} />
+          {!searchQuery ? (
+            <CategoryCards categories={categories} />
+          ) : (
+            <SearchTable categories={categories} searchQuery={searchQuery} />
+          )}
         </div>
       </div>
     );
@@ -42,9 +50,11 @@ class App extends React.Component {
 
 const mapStateToProps = ({ inventory }) => ({
   categories: inventory.categories,
+  searchQuery: inventory.searchQuery,
 });
 
 export default connect(mapStateToProps, {
   logoutUser,
   getItems,
+  setSearchQuery,
 })(App);
