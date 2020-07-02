@@ -1,8 +1,10 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
+
 import PrivateRoute from "./components/PrivateRoute";
 import NotPrivateRoute from "./components/NotPrivateRoute";
+
 import App from "./pages/App";
 import Landing from "./pages/Landing";
 import Register from "./pages/Register";
@@ -11,7 +13,9 @@ import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
 import Oops from "./pages/Oops";
 import Error from "./pages/Error";
+
 import NavBar from "./components/NavBar";
+import Footer from "./components/Footer";
 
 class Router extends React.Component {
   protectedComponent = (needsAuth, fallback) =>
@@ -20,7 +24,8 @@ class Router extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <NavBar />
+        {/*<NavBar />*/}
+
         <Switch>
           <PrivateRoute exact path="/" component={App} />
           <NotPrivateRoute exact path="/landing" component={Landing} />
@@ -39,6 +44,8 @@ class Router extends React.Component {
           <Route exact path="/oops" component={Oops} />
           <Route component={Error} />
         </Switch>
+
+        {/*<Footer />*/}
       </BrowserRouter>
     );
   }

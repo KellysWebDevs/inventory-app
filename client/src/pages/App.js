@@ -4,10 +4,11 @@ import M from "materialize-css";
 import BarcodeReader from "./BarcodeReader";
 import "../sass/index.scss";
 
-import CategoryCards from "../components/CategoryCards";
+import CategoryCard from "../components/CategoryCard";
 import CategoryFilter from "../components/CategoryFilter";
 import Search from "../components/Search";
 import SearchTable from "../components/SearchTable";
+import LoadingSplash from "../components/LoadingSplash";
 
 import { logoutUser } from "../redux/actions/authActions";
 import { getItems, setSearchQuery } from "../redux/actions/inventoryActions";
@@ -18,9 +19,16 @@ class App extends React.Component {
   }
 
   render() {
-    const { categories, searchQuery } = this.props;
+    const {
+      categories,
+      itemsLoading,
+      searchQuery,
+      categoryFilter,
+    } = this.props;
 
-    return (
+    return itemsLoading ? (
+      <LoadingSplash />
+    ) : (
       <div className="App">
         <div className="container">
           <h1 className="center-align">Inventory Manager</h1>
@@ -38,7 +46,11 @@ class App extends React.Component {
           </div>
 
           {!searchQuery ? (
-            <CategoryCards categories={categories} />
+            <div className="row">
+              {categories.map((category) => (
+                <CategoryCard key={category.name} category={category} />
+              ))}
+            </div>
           ) : (
             <SearchTable categories={categories} searchQuery={searchQuery} />
           )}
@@ -50,7 +62,9 @@ class App extends React.Component {
 
 const mapStateToProps = ({ inventory }) => ({
   categories: inventory.categories,
+  itemsLoading: inventory.itemsLoading,
   searchQuery: inventory.searchQuery,
+  categoryFilter: inventory.categoryFilter,
 });
 
 export default connect(mapStateToProps, {

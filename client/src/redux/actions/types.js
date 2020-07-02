@@ -5,4 +5,5 @@ export const SET_CURRENT_USER = "SET_CURRENT_USER";
 
 // Inventory Types
 export const SET_ITEMS = "SET_ITEMS";
+export const SET_ITEMS_LOADING = "SET_ITEMS_LOADING";
 export const SET_SEARCH_QUERY = "SET_SEARCH_QUERY";

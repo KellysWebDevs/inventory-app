@@ -1,7 +1,12 @@
-import { SET_ITEMS, SET_SEARCH_QUERY } from "../actions/types";
+import {
+  SET_ITEMS,
+  SET_ITEMS_LOADING,
+  SET_SEARCH_QUERY,
+} from "../actions/types";
 
 const initialState = {
   categories: [],
+  itemsLoading: true,
   searchQuery: "",
 };
 
@@ -11,6 +16,11 @@ const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         categories: action.payload,
+      };
+    case SET_ITEMS_LOADING:
+      return {
+        ...state,
+        itemsLoading: action.payload,
       };
     case SET_SEARCH_QUERY:
       return {

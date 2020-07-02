@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SET_ITEMS, SET_SEARCH_QUERY } from "./types";
+import { SET_ITEMS, SET_ITEMS_LOADING, SET_SEARCH_QUERY } from "./types";
 
 export const getItems = () => (dispatch) => {
   axios
@@ -53,18 +53,25 @@ export const setItems = (categories) => (dispatch) => {
     "orange",
   ];
   let paletteIndex = 0;
+  let lightenNumber = 3;
 
   categories.forEach((category, i) => {
     if (!colorPalette[paletteIndex]) {
       paletteIndex = 0;
     }
+    if (lightenNumber > 5) {
+      lightenNumber = 3;
+    }
 
     category.color = colorPalette[paletteIndex];
+    category.lighten = lightenNumber;
 
     paletteIndex++;
+    lightenNumber++;
   });
 
   dispatch({ type: SET_ITEMS, payload: categories });
+  dispatch({ type: SET_ITEMS_LOADING, payload: false });
 };
 
 export const setSearchQuery = (query) => (dispatch) => {

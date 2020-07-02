@@ -10,7 +10,7 @@ class CategoryFilter extends React.Component {
         {categories.map((category) => (
           <div
             key={category.name}
-            className={`chip ${category.color} lighten-3 ${category.color}-text text-darken-4`}
+            className={`chip ${category.color} lighten-${category.lighten} ${category.color}-text text-darken-4`}
           >
             {category.name}
           </div>
