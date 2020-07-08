@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import ReactToPrint from "react-to-print";
 
 class NavBar extends Component {
@@ -8,7 +7,7 @@ class NavBar extends Component {
       <div className="navbar-fixed">
         <nav>
           <div className="nav-wrapper">
-            <ul id="nav-mobile" className="right hide-on-med-and-down">
+            <ul id="nav-mobile" className="right">
               <li className="mr-2">
                 <button className="waves-effect waves-light btn">
                   <i

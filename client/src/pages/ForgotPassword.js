@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import AutoTitle from "../components/AutoTitle";
 import { connect } from "react-redux";
 import classnames from "classnames";
 import { sendForgotEmail } from "../redux/actions/authActions";
@@ -35,44 +35,66 @@ class ForgotPassword extends React.Component {
     const { errors } = this.state;
 
     return (
-      <>
-        <Link to="/">← Back to home</Link>
-        <div style={{ paddingLeft: "11.250px" }}>
-          <h4>Forgot Password</h4>
+      <div className="container">
+        <div className="row">
+          <div className="col s12">
+            <AutoTitle>Forgot Password</AutoTitle>
+          </div>
         </div>
-        <form noValidate onSubmit={this.onSubmit}>
-          <div>
-            <input
-              onChange={this.onChange}
-              value={this.state.email}
-              error={errors.email}
-              id="email"
-              type="email"
-              className={classnames("", {
-                invalid: errors.email || errors.emailnotfound,
-              })}
-            />
-            <label htmlFor="email">Email</label>
-            <span style={{ color: "white", backgroundColor: "red" }}>
-              {errors.email}
-              {errors.emailnotfound}
-            </span>
+
+        <div className="row">
+          <div className="col s12">
+            <form noValidate onSubmit={this.onSubmit}>
+              <div className="row">
+                <div className="input-field col s12">
+                  <input
+                    onChange={this.onChange}
+                    value={this.state.email}
+                    error={errors.email}
+                    id="email"
+                    type="email"
+                    className={classnames("", {
+                      invalid: errors.email || errors.emailnotfound,
+                    })}
+                  />
+                  <label htmlFor="email">Email</label>
+                  <span
+                    className="helper-text"
+                    data-error={errors.email || errors.emailnotfound}
+                  ></span>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="col s12">
+                  <button type="submit" className="btn btn-small">
+                    Send Email <i className="material-icons right">send</i>
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
-          <div style={{ paddingLeft: "11.250px" }}>
-            <button
-              style={{
-                width: "150px",
-                borderRadius: "3px",
-                letterSpacing: "1.5px",
-                marginTop: "1rem",
-              }}
-              type="submit"
-            >
-              Send Email
-            </button>
+        </div>
+
+        <div className="row">
+          <div className="col s12">
+            <blockquote>
+              Suddenly remember your password?
+              <a href="/login" className="btn btn-flat red-text text-lighten-1">
+                <i className="material-icons">file_download</i>
+              </a>
+              <br />
+              Want to make a new account?
+              <a
+                href="/register"
+                className="btn btn-flat red-text text-lighten-1"
+              >
+                <i className="material-icons">account_box</i>
+              </a>
+            </blockquote>
           </div>
-        </form>
-      </>
+        </div>
+      </div>
     );
   }
 }

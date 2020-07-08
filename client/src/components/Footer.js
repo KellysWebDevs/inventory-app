@@ -66,29 +66,29 @@ class Footer extends React.Component {
     });
   };
 
-  componentDidMount() {
-    if (this.Canvas.width > 500) {
-      const { ctx } = this;
-
-      this.generateContainers();
-      this.generateCars();
-
-      console.log(this.cars);
-
-      setInterval(() => {
-        ctx.clearRect(0, 0, this.Canvas.width, this.Canvas.height);
-
-        this.drawContainers();
-        this.drawStorage();
-        this.drawCars();
-      }, 1000 / 30);
-    }
-  }
+  // componentDidMount() {
+  //   if (this.Canvas.width > 500) {
+  //     const { ctx } = this;
+  //
+  //     this.generateContainers();
+  //     this.generateCars();
+  //
+  //     console.log(this.cars);
+  //
+  //     setInterval(() => {
+  //       ctx.clearRect(0, 0, this.Canvas.width, this.Canvas.height);
+  //
+  //       this.drawContainers();
+  //       this.drawStorage();
+  //       this.drawCars();
+  //     }, 1000 / 30);
+  //   }
+  // }
 
   render() {
     return (
-      <footer className="page-footer transparent">
-        <div className="center">
+      <footer className="page-footer orange lighten-1">
+        {/*<div className="center">
           <canvas
             width={window.innerWidth / 1.3}
             height="300"
@@ -97,7 +97,7 @@ class Footer extends React.Component {
               this.ctx = Canvas.getContext("2d");
             }}
           ></canvas>
-        </div>
+        </div>*/}
         <div className="footer-copyright orange">
           <div className="container">© 2020 Family I Love</div>
         </div>

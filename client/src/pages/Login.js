@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import AutoTitle from "../components/AutoTitle";
 import { connect } from "react-redux";
 import classnames from "classnames";
 import { loginUser } from "../redux/actions/authActions";
@@ -37,67 +37,91 @@ class Login extends React.Component {
     const { errors } = this.state;
 
     return (
-      <>
-        <Link to="/landing">← Back to home</Link>
-        <div style={{ paddingLeft: "11.250px" }}>
-          <h4>Login below</h4>
-          <p>
-            Don't have an account? <Link to="/register">Register</Link>
-          </p>
+      <div className="container">
+        <div className="row">
+          <div className="col s12">
+            <AutoTitle>Login</AutoTitle>
+          </div>
         </div>
-        <form noValidate onSubmit={this.onSubmit}>
-          <div>
-            <input
-              onChange={this.onChange}
-              value={this.state.email}
-              error={errors.email}
-              id="email"
-              type="email"
-              className={classnames("", {
-                invalid: errors.email || errors.emailnotfound,
-              })}
-            />
-            <label htmlFor="email">Email</label>
-            <span style={{ color: "white", backgroundColor: "red" }}>
-              {errors.email}
-              {errors.emailnotfound}
-            </span>
+
+        <div className="row">
+          <div className="col s12">
+            <form noValidate onSubmit={this.onSubmit}>
+              <div className="row">
+                <div className="input-field col s12">
+                  <input
+                    onChange={this.onChange}
+                    value={this.state.email}
+                    error={errors.email}
+                    id="email"
+                    type="email"
+                    className={classnames("", {
+                      invalid: errors.email || errors.emailnotfound,
+                    })}
+                  />
+                  <label htmlFor="email">Email</label>
+                  <span
+                    className="helper-text"
+                    data-error={errors.email || errors.emailnotfound}
+                  ></span>
+                </div>
+              </div>
+
+              <div className="row">
+                <div className="input-field col s12">
+                  <input
+                    onChange={this.onChange}
+                    value={this.state.password}
+                    error={errors.password}
+                    id="password"
+                    type="password"
+                    className={classnames("", {
+                      invalid: errors.password || errors.passwordincorrect,
+                    })}
+                  />
+                  <label htmlFor="password">Password</label>
+                  <span
+                    className="helper-text"
+                    data-error={errors.password || errors.passwordincorrect}
+                  ></span>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col s12">
+                  <button
+                    type="submit"
+                    className="btn waves-effect waves-light"
+                  >
+                    Login
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
-          <div>
-            <input
-              onChange={this.onChange}
-              value={this.state.password}
-              error={errors.password}
-              id="password"
-              type="password"
-              className={classnames("", {
-                invalid: errors.password || errors.passwordincorrect,
-              })}
-            />
-            <label htmlFor="password">Password</label>
-            <span style={{ color: "white", backgroundColor: "red" }}>
-              {errors.password}
-              {errors.passwordincorrect}
-            </span>
+        </div>
+
+        <div className="row">
+          <div className="col s12">
+            <blockquote>
+              Forgot your password?
+              <a
+                href="/forgotpassword"
+                className="btn btn-flat red-text text-lighten-1"
+              >
+                <i className="material-icons">replay</i>
+              </a>
+              <br />
+              Don't have an account?
+              <a
+                href="/register"
+                className="btn btn-flat red-text text-lighten-1"
+              >
+                <i className="material-icons">account_box</i>
+              </a>
+            </blockquote>
           </div>
-          <div style={{ paddingLeft: "11.250px" }}>
-            <button
-              style={{
-                width: "150px",
-                borderRadius: "3px",
-                letterSpacing: "1.5px",
-                marginTop: "1rem",
-              }}
-              type="submit"
-            >
-              Login
-            </button>
-          </div>
-        </form>
-        <p>
-          Forgot your password? <Link to="/forgotpassword">Reset It</Link>
-        </p>
-      </>
+        </div>
+      </div>
     );
   }
 }

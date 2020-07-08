@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import AutoTitle from "../components/AutoTitle";
 import { connect } from "react-redux";
 import classnames from "classnames";
 import { resetUserPassword } from "../redux/actions/authActions";
@@ -43,60 +43,82 @@ class ResetPassword extends React.Component {
     const { errors } = this.state;
 
     return (
-      <>
-        <Link to="/">← Back to home</Link>
-        <div style={{ paddingLeft: "11.250px" }}>
-          <h4>Type new password below</h4>
+      <div className="container">
+        <div className="row">
+          <div className="col s12">
+            <AutoTitle>Password Reset</AutoTitle>
+          </div>
         </div>
+
         <form noValidate onSubmit={this.handleSubmit}>
-          <div>
-            <input
-              onChange={this.handleChange}
-              value={this.state.password}
-              error={errors.password}
-              id="password"
-              type="password"
-              className={classnames("", {
-                invalid: errors.password || errors.passwordincorrect,
-              })}
-            />
-            <label htmlFor="password">Password</label>
-            <span style={{ color: "white", backgroundColor: "red" }}>
-              {errors.password}
-              {errors.passwordincorrect}
-            </span>
+          <div className="row">
+            <div className="input-field col s12">
+              <input
+                onChange={this.handleChange}
+                value={this.state.password}
+                error={errors.password}
+                id="password"
+                type="password"
+                className={classnames("", {
+                  invalid: errors.password || errors.passwordincorrect,
+                })}
+              />
+              <label htmlFor="password">Password</label>
+              <span
+                className="helper-text"
+                data-error={errors.password || errors.passwordincorrect}
+              ></span>
+            </div>
           </div>
-          <div>
-            <input
-              onChange={this.handleChange}
-              value={this.state.password2}
-              error={errors.password2}
-              id="password2"
-              type="password"
-              className={classnames("", {
-                invalid: errors.password2,
-              })}
-            />
-            <label htmlFor="password2">Confirm Password</label>
-            <span style={{ color: "white", backgroundColor: "red" }}>
-              {errors.password2}
-            </span>
+
+          <div className="row">
+            <div className="input-field col s12">
+              <input
+                onChange={this.handleChange}
+                value={this.state.password2}
+                error={errors.password2}
+                id="password2"
+                type="password"
+                className={classnames("", {
+                  invalid: errors.password2,
+                })}
+              />
+              <label htmlFor="password2">Confirm Password</label>
+              <span
+                className="helper-text"
+                data-error={errors.password2}
+              ></span>
+            </div>
           </div>
-          <div style={{ paddingLeft: "11.250px" }}>
-            <button
-              style={{
-                width: "150px",
-                borderRadius: "3px",
-                letterSpacing: "1.5px",
-                marginTop: "1rem",
-              }}
-              type="submit"
-            >
-              Reset Password
-            </button>
+
+          <div className="row">
+            <div className="col s12">
+              <button type="submit" className="btn">
+                Reset <i className="material-icons right">replay</i>
+              </button>
+            </div>
           </div>
         </form>
-      </>
+
+        <div className="row">
+          <div className="col s12">
+            <blockquote>
+              Suddenly remember your password?
+              <a href="/login" className="btn btn-flat red-text text-lighten-1">
+                <i className="material-icons">file_download</i>
+              </a>
+              <br />
+              Want to make a new account?
+              <a
+                href="/register"
+                className="btn btn-flat red-text text-lighten-1"
+              >
+                <i className="material-icons">account_box</i>
+              </a>
+            </blockquote>
+          </div>
+        </div>
+      </div>
     );
   }
 }
