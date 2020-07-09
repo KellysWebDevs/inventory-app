@@ -35,7 +35,15 @@ class App extends React.Component {
       <LoadingSplash />
     ) : (
       <div className="container">
-        <h1 className="center-align">Inventory Manager</h1>
+        <div className="row">
+          <div className="col s12">
+            <h2 className="center hide-on-med-and-down">Inventory Manager</h2>
+            <h3 className="center hide-on-large-only hide-on-small-only">
+              Inventory Manager
+            </h3>
+            <h4 className="center hide-on-med-and-up">Inventory Manager</h4>
+          </div>
+        </div>
 
         <div className="row">
           <div className="col s12 m6">

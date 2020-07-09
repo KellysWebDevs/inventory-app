@@ -6,10 +6,13 @@ class Landing extends React.Component {
     tapTargetPulse: "pulse",
   };
 
+  openTapTarget = () => {
+    this.tapTargetInstance.open();
+    this.setState({ tapTargetPulse: "" });
+  };
+
   componentDidMount() {
-    M.TapTarget.init(this.TapTarget, {
-      onOpen: () => this.setState({ tapTargetPulse: "" }),
-    });
+    this.tapTargetInstance = M.TapTarget.init(this.TapTarget, {});
   }
 
   render() {
@@ -44,21 +47,26 @@ class Landing extends React.Component {
         <div className="fixed-action-btn direction-top">
           <button
             id="menu"
-            className={`btn btn-floating btn-large waves-effect waves-light ${this.state.tapTargetPulse}`}
+            className={`btn btn-floating btn-large pink lighten-1 ${this.state.tapTargetPulse}`}
+            onClick={this.openTapTarget}
           >
             <i className="material-icons">menu</i>
           </button>
         </div>
         <div
-          className="tap-target"
+          className="tap-target blue lighten-1"
           data-target="menu"
           ref={(TapTarget) => {
             this.TapTarget = TapTarget;
           }}
         >
           <div className="tap-target-content">
-            <h5>We do stuff</h5>
-            <p>Testing with a lot of random text with fillers of randomness.</p>
+            <h5>Get Ready for Organization</h5>
+            <p>
+              This demo app is meant for organizing anything from food, to
+              hardware, to whatever else you might think of! All you have to do
+              is sign up to experience it.
+            </p>
           </div>
         </div>
       </div>

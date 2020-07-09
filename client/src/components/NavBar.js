@@ -1,70 +1,149 @@
-import React, { Component } from "react";
+import React from "react";
 import ReactToPrint from "react-to-print";
+import M from "materialize-css";
 
-class NavBar extends Component {
+class NavBar extends React.Component {
+  componentDidMount() {
+    M.Sidenav.init(this.Sidenav, {});
+  }
+
   render() {
     return (
-      <div className="navbar-fixed">
-        <nav>
-          <div className="nav-wrapper">
-            <ul id="nav-mobile" className="right">
-              <li className="mr-2">
-                <button className="waves-effect waves-light btn">
+      <>
+        <div className="navbar-fixed">
+          <nav>
+            <div className="nav-wrapper">
+              <ul className="left hide-on-small-only">
+                <li className="ml-1">
+                  <a href="#!">
+                    <i
+                      className="iconify mr-1"
+                      data-icon="bi:plus"
+                      data-inline="false"
+                      style={{ width: "20px", height: "20px" }}
+                    ></i>
+                    ADD ITEM
+                  </a>
+                </li>
+
+                <li>
+                  <a href="#!">
+                    <i
+                      className="iconify mr-1"
+                      data-icon="mdi:barcode-scan"
+                      data-inline="false"
+                      style={{ width: "20px", height: "20px" }}
+                    ></i>
+                    SCAN
+                  </a>
+                </li>
+
+                <li>
+                  <ReactToPrint
+                    trigger={() => (
+                      <a href="#!">
+                        <i
+                          className="iconify mr-1"
+                          data-icon="topcoat:print"
+                          data-inline="false"
+                          style={{ width: "20px", height: "20px" }}
+                        ></i>
+                        PRINT
+                      </a>
+                    )}
+                  />
+                </li>
+              </ul>
+
+              <ul id="nav-mobile" className="right hide-on-small-only">
+                <li>
+                  <a href="#!" onClick={this.props.logoutUser}>
+                    LOG OUT
+                    <i
+                      className="iconify ml-1"
+                      data-icon="ls:logout"
+                      data-inline="false"
+                      style={{ width: "20px", height: "20px" }}
+                    ></i>
+                  </a>
+                </li>
+              </ul>
+
+              <ul className="right hide-on-med-and-up">
+                <li>
+                  <a
+                    href="#sidenav"
+                    className="sidenav-trigger"
+                    data-target="mobile-sidenav"
+                  >
+                    <i className="material-icons middle">menu</i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+
+        <ul
+          id="mobile-sidenav"
+          className="sidenav"
+          ref={(Sidenav) => {
+            this.Sidenav = Sidenav;
+          }}
+        >
+          <li>
+            <a href="#!">
+              <i
+                className="iconify mr-1"
+                data-icon="bi:plus"
+                data-inline="false"
+                style={{ width: "20px", height: "20px" }}
+              ></i>
+              ADD ITEM
+            </a>
+          </li>
+
+          <li>
+            <a href="#!">
+              <i
+                className="iconify mr-1"
+                data-icon="mdi:barcode-scan"
+                data-inline="false"
+                style={{ width: "20px", height: "20px" }}
+              ></i>
+              SCAN
+            </a>
+          </li>
+
+          <li>
+            <ReactToPrint
+              trigger={() => (
+                <a href="#!">
                   <i
                     className="iconify mr-1"
-                    data-icon="bi:plus"
+                    data-icon="topcoat:print"
                     data-inline="false"
                     style={{ width: "20px", height: "20px" }}
                   ></i>
-                  ADD ITEM
-                </button>
-              </li>
-              <li className="mr-2">
-                <button className="waves-effect waves-light btn">
-                  <i
-                    className="iconify mr-1"
-                    data-icon="mdi:barcode-scan"
-                    data-inline="false"
-                    style={{ width: "20px", height: "20px" }}
-                  ></i>
-                  SCAN
-                </button>
-              </li>
+                  PRINT
+                </a>
+              )}
+            />
+          </li>
 
-              <li className="mr-2">
-                <ReactToPrint
-                  trigger={() => (
-                    <button className="waves-effect waves-light btn">
-                      <i
-                        className="iconify mr-1"
-                        data-icon="topcoat:print"
-                        data-inline="false"
-                        style={{ width: "20px", height: "20px" }}
-                      ></i>
-                      PRINT
-                    </button>
-                  )}
-                />
-              </li>
-
-              <li className="mr-2">
-                <button
-                  className="waves-effect waves-light btn"
-                  onClick={this.props.logoutUser}
-                >
-                  LOG OUT
-                  <i
-                    className="iconify ml-1"
-                    data-icon="ls:logout"
-                    data-inline="false"
-                    style={{ width: "20px", height: "20px" }}
-                  ></i>
-                </button>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
+          <li>
+            <a href="#!" onClick={this.props.logoutUser}>
+              LOG OUT
+              <i
+                className="iconify ml-1"
+                data-icon="ls:logout"
+                data-inline="false"
+                style={{ width: "20px", height: "20px" }}
+              ></i>
+            </a>
+          </li>
+        </ul>
+      </>
     );
   }
 }

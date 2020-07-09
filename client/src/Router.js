@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { connect } from "react-redux";
+import { logoutUser } from "./redux/actions/authActions";
 
 import PrivateRoute from "./components/PrivateRoute";
 import NotPrivateRoute from "./components/NotPrivateRoute";
@@ -26,7 +27,7 @@ class Router extends React.Component {
     return (
       <BrowserRouter>
         {this.props.auth.isAuthenticated && !this.props.itemsLoading ? (
-          <NavBar />
+          <NavBar logoutUser={this.props.logoutUser} />
         ) : null}
 
         <main>
@@ -62,4 +63,4 @@ const mapStateToProps = (state) => ({
   itemsLoading: state.inventory.itemsLoading,
 });
 
-export default connect(mapStateToProps)(Router);
+export default connect(mapStateToProps, { logoutUser })(Router);

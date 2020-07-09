@@ -5,7 +5,6 @@ class ToDo extends React.Component {
     return (
       <ol>
         <li>Replace icons with material icons</li>
-        <li>Fix feature discovery</li>
         <li>Add style to boilerplate</li>
       </ol>
     );
