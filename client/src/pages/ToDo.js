@@ -4,11 +4,9 @@ class ToDo extends React.Component {
   render() {
     return (
       <ol>
-        <li>Make footer sticky</li>
-        <li>Check 404 page</li>
-        <li>Add style to boilerplate</li>
-        <li>Change button icons</li>
+        <li>Replace icons with material icons</li>
         <li>Fix feature discovery</li>
+        <li>Add style to boilerplate</li>
       </ol>
     );
   }

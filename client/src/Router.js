@@ -27,25 +27,27 @@ class Router extends React.Component {
       <BrowserRouter>
         {this.props.auth.isAuthenticated ? <NavBar /> : null}
 
-        <Switch>
-          <PrivateRoute exact path="/" component={App} />
-          <NotPrivateRoute exact path="/landing" component={Landing} />
-          <NotPrivateRoute exact path="/register" component={Register} />
-          <NotPrivateRoute exact path="/login" component={Login} />
-          <NotPrivateRoute
-            exact
-            path="/forgotpassword"
-            component={ForgotPassword}
-          />
-          <NotPrivateRoute
-            exact
-            path="/resetpassword/:token"
-            component={ResetPassword}
-          />
-          <Route exact path="/todo" component={ToDo} />
-          <Route exact path="/oops" component={Oops} />
-          <Route component={Error404} />
-        </Switch>
+        <main>
+          <Switch>
+            <PrivateRoute exact path="/" component={App} />
+            <NotPrivateRoute exact path="/landing" component={Landing} />
+            <NotPrivateRoute exact path="/register" component={Register} />
+            <NotPrivateRoute exact path="/login" component={Login} />
+            <NotPrivateRoute
+              exact
+              path="/forgotpassword"
+              component={ForgotPassword}
+            />
+            <NotPrivateRoute
+              exact
+              path="/resetpassword/:token"
+              component={ResetPassword}
+            />
+            <Route exact path="/todo" component={ToDo} />
+            <Route exact path="/oops" component={Oops} />
+            <Route component={Error404} />
+          </Switch>
+        </main>
 
         <Footer />
       </BrowserRouter>

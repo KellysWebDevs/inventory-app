@@ -79,18 +79,9 @@ class ForgotPassword extends React.Component {
         <div className="row">
           <div className="col s12">
             <blockquote>
-              Suddenly remember your password?
-              <a href="/login" className="btn btn-flat red-text text-lighten-1">
-                <i className="material-icons">file_download</i>
-              </a>
+              Remembered your password? <a href="/login">Back to login</a>
               <br />
-              Want to make a new account?
-              <a
-                href="/register"
-                className="btn btn-flat red-text text-lighten-1"
-              >
-                <i className="material-icons">account_box</i>
-              </a>
+              Don't have an account? <a href="/register">Register</a>
             </blockquote>
           </div>
         </div>
