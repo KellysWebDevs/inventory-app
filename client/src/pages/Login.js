@@ -103,21 +103,9 @@ class Login extends React.Component {
         <div className="row">
           <div className="col s12">
             <blockquote>
-              Forgot your password?
-              <a
-                href="/forgotpassword"
-                className="btn btn-flat red-text text-lighten-1"
-              >
-                <i className="material-icons">replay</i>
-              </a>
+              Forgot your password? <a href="/forgotpassword">Get password</a>
               <br />
-              Don't have an account?
-              <a
-                href="/register"
-                className="btn btn-flat red-text text-lighten-1"
-              >
-                <i className="material-icons">account_box</i>
-              </a>
+              Don't have an account? <a href="/register">Register</a>
             </blockquote>
           </div>
         </div>

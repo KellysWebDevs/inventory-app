@@ -134,7 +134,7 @@ class Register extends React.Component {
                     type="submit"
                     className="btn waves-effect waves-light"
                   >
-                    Sign up
+                    Register
                   </button>
                 </div>
               </div>
@@ -145,10 +145,7 @@ class Register extends React.Component {
         <div className="row">
           <div className="col s12">
             <blockquote>
-              Already have an account?
-              <a href="/login" className="btn btn-flat red-text text-lighten-1">
-                <i className="material-icons">file_download</i>
-              </a>
+              Already have an account? <a href="/login"> Login</a>
             </blockquote>
           </div>
         </div>
