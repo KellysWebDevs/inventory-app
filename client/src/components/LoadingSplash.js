@@ -85,6 +85,7 @@ class LoadingSplash extends React.Component {
       <div
         className={`${this.state.backColor}`}
         style={{
+          position: "absolute",
           zIndex: "999",
           width: `${window.innerWidth}px`,
           height: `${window.innerHeight}px`,

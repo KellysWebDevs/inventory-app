@@ -1,5 +1,10 @@
 import axios from "axios";
-import { SET_ITEMS, SET_ITEMS_LOADING, SET_SEARCH_QUERY } from "./types";
+import {
+  SET_ITEMS,
+  SET_ITEMS_LOADING,
+  SET_SEARCH_QUERY,
+  SET_CATEGORY_FILTER,
+} from "./types";
 
 export const getItems = () => (dispatch) => {
   axios
@@ -76,4 +81,8 @@ export const setItems = (categories) => (dispatch) => {
 
 export const setSearchQuery = (query) => (dispatch) => {
   dispatch({ type: SET_SEARCH_QUERY, payload: query });
+};
+
+export const setCategoryFilter = (filter) => (dispatch) => {
+  dispatch({ type: SET_CATEGORY_FILTER, payload: filter });
 };

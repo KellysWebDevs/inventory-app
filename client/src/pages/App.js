@@ -6,12 +6,17 @@ import "../sass/index.scss";
 
 import CategoryCard from "../components/CategoryCard";
 import CategoryFilter from "../components/CategoryFilter";
+import CategoryFilterTable from "../components/CategoryFilterTable";
 import Search from "../components/Search";
 import SearchTable from "../components/SearchTable";
 import LoadingSplash from "../components/LoadingSplash";
 
 import { logoutUser } from "../redux/actions/authActions";
-import { getItems, setSearchQuery } from "../redux/actions/inventoryActions";
+import {
+  getItems,
+  setSearchQuery,
+  setCategoryFilter,
+} from "../redux/actions/inventoryActions";
 
 class App extends React.Component {
   componentDidMount() {
@@ -29,32 +34,43 @@ class App extends React.Component {
     return itemsLoading ? (
       <LoadingSplash />
     ) : (
-      <div className="App">
-        <div className="container">
-          <h1 className="center-align">Inventory Manager</h1>
+      <div className="container">
+        <h1 className="center-align">Inventory Manager</h1>
 
-          <div className="row">
-            <div className="col s12 m6">
-              <CategoryFilter categories={categories} />
-            </div>
-            <div className="col s12 m6">
-              <Search
-                setSearchQuery={this.props.setSearchQuery}
-                searchQuery={searchQuery}
-              />
-            </div>
+        <div className="row">
+          <div className="col s12 m6">
+            <CategoryFilter
+              categories={categories}
+              categoryFilter={categoryFilter}
+              setCategoryFilter={this.props.setCategoryFilter}
+            />
           </div>
+          <div className="col s12 m6">
+            <Search
+              setSearchQuery={this.props.setSearchQuery}
+              searchQuery={searchQuery}
+            />
+          </div>
+        </div>
 
-          {!searchQuery ? (
+        {!searchQuery ? (
+          !categoryFilter ? (
             <div className="row">
               {categories.map((category) => (
-                <CategoryCard key={category.name} category={category} />
+                <div key={category.name} className="col s12 m6">
+                  <CategoryCard category={category} />
+                </div>
               ))}
             </div>
           ) : (
-            <SearchTable categories={categories} searchQuery={searchQuery} />
-          )}
-        </div>
+            <CategoryFilterTable
+              categories={categories}
+              categoryFilter={categoryFilter}
+            />
+          )
+        ) : (
+          <SearchTable categories={categories} searchQuery={searchQuery} />
+        )}
       </div>
     );
   }
@@ -71,4 +87,5 @@ export default connect(mapStateToProps, {
   logoutUser,
   getItems,
   setSearchQuery,
+  setCategoryFilter,
 })(App);

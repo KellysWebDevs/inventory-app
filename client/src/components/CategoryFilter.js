@@ -1,8 +1,18 @@
 import React from "react";
 
 class CategoryFilter extends React.Component {
+  setFilter = (category) => {
+    const { categoryFilter, setCategoryFilter } = this.props;
+
+    if (category === categoryFilter) {
+      setCategoryFilter("");
+    } else {
+      setCategoryFilter(category);
+    }
+  };
+
   render() {
-    const { categories } = this.props;
+    const { categories, categoryFilter } = this.props;
 
     return (
       <>
@@ -10,7 +20,12 @@ class CategoryFilter extends React.Component {
         {categories.map((category) => (
           <div
             key={category.name}
-            className={`chip ${category.color} lighten-${category.lighten} ${category.color}-text text-darken-4`}
+            className={`chip hoverable unselectable ${
+              categoryFilter === category.name
+                ? "black white-text"
+                : `${category.color} lighten-${category.lighten} ${category.color}-text text-darken-4`
+            }`}
+            onClick={() => this.setFilter(category.name)}
           >
             {category.name}
           </div>

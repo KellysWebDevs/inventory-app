@@ -2,12 +2,14 @@ import {
   SET_ITEMS,
   SET_ITEMS_LOADING,
   SET_SEARCH_QUERY,
+  SET_CATEGORY_FILTER,
 } from "../actions/types";
 
 const initialState = {
   categories: [],
   itemsLoading: true,
   searchQuery: "",
+  categoryFilter: "",
 };
 
 const inventoryReducer = (state = initialState, action) => {
@@ -26,6 +28,11 @@ const inventoryReducer = (state = initialState, action) => {
       return {
         ...state,
         searchQuery: action.payload,
+      };
+    case SET_CATEGORY_FILTER:
+      return {
+        ...state,
+        categoryFilter: action.payload,
       };
     default:
       return state;

@@ -1,14 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 
-class CategoryCard extends Component {
+class categoryFilterTable extends React.Component {
   render() {
-    const { category } = this.props;
+    const { categories, categoryFilter } = this.props;
+    const category = categories.find(
+      (category) => category.name === categoryFilter
+    );
 
     return (
       <div className={`${category.color} lighten-${category.lighten}`}>
         <div className="row">
           <div className="col s12">
-            <h3 className="center">{category.name}</h3>
+            <h3 className="center">{categoryFilter}</h3>
           </div>
         </div>
 
@@ -23,7 +26,6 @@ class CategoryCard extends Component {
                   <th>Remove</th>
                 </tr>
               </thead>
-
               <tbody>
                 {category.items.map((item) => (
                   <tr key={item.name}>
@@ -56,4 +58,4 @@ class CategoryCard extends Component {
   }
 }
 
-export default CategoryCard;
+export default categoryFilterTable;

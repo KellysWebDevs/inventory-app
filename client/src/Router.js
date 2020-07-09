@@ -25,7 +25,9 @@ class Router extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        {this.props.auth.isAuthenticated ? <NavBar /> : null}
+        {this.props.auth.isAuthenticated && !this.props.itemsLoading ? (
+          <NavBar />
+        ) : null}
 
         <Switch>
           <PrivateRoute exact path="/" component={App} />
@@ -55,6 +57,7 @@ class Router extends React.Component {
 
 const mapStateToProps = (state) => ({
   auth: state.auth,
+  itemsLoading: state.inventory.itemsLoading,
 });
 
 export default connect(mapStateToProps)(Router);

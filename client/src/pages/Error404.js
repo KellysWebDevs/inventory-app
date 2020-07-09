@@ -18,11 +18,12 @@ class Error404 extends React.Component {
               <li>Make a draft</li>
               <li>Find the RIGHT web page</li>
               <li>DON'T find the WRONG web page again</li>
-              <li style={{ color: "rgba(0,0,0,0.5)" }}>Make a statement</li>
-              <li style={{ color: "rgba(0,0,0,0.25)" }}>Make time</li>
-              <li style={{ color: "rgba(0,0,0,0.1)" }}>Make money</li>
-              <li style={{ color: "rgba(0,0,0,0.05)" }}>Party all night</li>
-              <li style={{ color: "rgba(0,0,0,0.02)" }}>Get things done</li>
+              <li style={{ color: "rgba(0,0,0,0.5)" }}>Read a book</li>
+              <li style={{ color: "rgba(0,0,0,0.25)" }}>Make some time</li>
+              <li style={{ color: "rgba(0,0,0,0.1)" }}>Make some art</li>
+              <li style={{ color: "rgba(0,0,0,0.05)" }}>Don't fall asleep</li>
+              <li style={{ color: "rgba(0,0,0,0.02)" }}>Watch a movie</li>
+              <li style={{ color: "rgba(0,0,0,0)" }}>Easter egg! ;P</li>
             </ul>
           </div>
         </div>
