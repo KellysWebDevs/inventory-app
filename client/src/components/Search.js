@@ -12,11 +12,7 @@ class Search extends Component {
         autoComplete="off"
         onSubmit={(e) => e.preventDefault()}
       >
-        <i
-          className="iconify prefix"
-          data-icon="bi:search"
-          data-inline="false"
-        ></i>
+        <i className="material-icons prefix">search</i>
         <input
           id="search"
           type="text"

@@ -14,10 +14,10 @@ class SearchTable extends React.Component {
         <table>
           <thead>
             <tr>
-              <th>Item</th>
-              <th>Amount</th>
-              <th>Bar Code</th>
-              <th>Remove</th>
+              <th className="pl-1">Item</th>
+              <th className="center-align">Amount</th>
+              <th className="center-align">Bar Code</th>
+              <th className="center-align">Remove</th>
             </tr>
           </thead>
           <tbody>
@@ -25,9 +25,9 @@ class SearchTable extends React.Component {
               category.items.map((item) =>
                 item.name.toLowerCase().includes(searchQuery.toLowerCase()) ? (
                   <tr key={item.name}>
-                    <td>{item.name}</td>
-                    <td>{item.amount}</td>
-                    <td>
+                    <td className="pl-1">{item.name}</td>
+                    <td className="center-align">{item.amount}</td>
+                    <td className="center-align">
                       <i
                         className="iconify"
                         data-icon="mdi:barcode-scan"
@@ -35,13 +35,8 @@ class SearchTable extends React.Component {
                         style={{ width: "24px", height: "24px" }}
                       ></i>
                     </td>
-                    <td>
-                      <i
-                        className="iconify red-text"
-                        data-icon="el:remove-circle"
-                        data-inline="false"
-                        style={{ width: "24px", height: "24px" }}
-                      ></i>
+                    <td className="center-align">
+                      <i className="material-icons red-text">highlight_off</i>
                     </td>
                   </tr>
                 ) : null

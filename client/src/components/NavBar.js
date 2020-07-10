@@ -16,24 +16,14 @@ class NavBar extends React.Component {
               <ul className="left hide-on-small-only">
                 <li className="ml-1">
                   <a href="#!">
-                    <i
-                      className="iconify mr-1"
-                      data-icon="bi:plus"
-                      data-inline="false"
-                      style={{ width: "20px", height: "20px" }}
-                    ></i>
+                    <i className="material-icons left">add</i>
                     ADD ITEM
                   </a>
                 </li>
 
                 <li>
                   <a href="#!">
-                    <i
-                      className="iconify mr-1"
-                      data-icon="mdi:barcode-scan"
-                      data-inline="false"
-                      style={{ width: "20px", height: "20px" }}
-                    ></i>
+                    <i className="material-icons">barcode-scan</i>
                     SCAN
                   </a>
                 </li>
@@ -42,12 +32,7 @@ class NavBar extends React.Component {
                   <ReactToPrint
                     trigger={() => (
                       <a href="#!">
-                        <i
-                          className="iconify mr-1"
-                          data-icon="topcoat:print"
-                          data-inline="false"
-                          style={{ width: "20px", height: "20px" }}
-                        ></i>
+                        <i className="material-icons left">print</i>
                         PRINT
                       </a>
                     )}
@@ -93,24 +78,14 @@ class NavBar extends React.Component {
         >
           <li>
             <a href="#!">
-              <i
-                className="iconify mr-1"
-                data-icon="bi:plus"
-                data-inline="false"
-                style={{ width: "20px", height: "20px" }}
-              ></i>
+              <i className="material-icons left">add</i>
               ADD ITEM
             </a>
           </li>
 
           <li>
             <a href="#!">
-              <i
-                className="iconify mr-1"
-                data-icon="mdi:barcode-scan"
-                data-inline="false"
-                style={{ width: "20px", height: "20px" }}
-              ></i>
+              <i className="material-icons">barcode-scan</i>
               SCAN
             </a>
           </li>
@@ -119,12 +94,7 @@ class NavBar extends React.Component {
             <ReactToPrint
               trigger={() => (
                 <a href="#!">
-                  <i
-                    className="iconify mr-1"
-                    data-icon="topcoat:print"
-                    data-inline="false"
-                    style={{ width: "20px", height: "20px" }}
-                  ></i>
+                  <i className="material-icons left">print</i>
                   PRINT
                 </a>
               )}
