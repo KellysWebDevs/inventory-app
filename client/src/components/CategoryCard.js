@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { InlineIcon } from "@iconify/react";
+import barcodeScan from "@iconify/icons-mdi/barcode-scan";
+import closeCircleOutline from "@iconify/icons-mdi/close-circle-outline";
 
 class CategoryCard extends Component {
   render() {
@@ -30,15 +33,19 @@ class CategoryCard extends Component {
                     <td className="pl-1">{item.name}</td>
                     <td className="center-align">{item.amount}</td>
                     <td className="center-align">
-                      <i
-                        className="iconify"
-                        data-icon="mdi:barcode-scan"
-                        data-inline="false"
-                        style={{ width: "24px", height: "24px" }}
-                      ></i>
+                      <InlineIcon
+                        icon={barcodeScan}
+                        width="1.5em"
+                        height="1.5em"
+                      />
                     </td>
                     <td className="center-align">
-                      <i className="material-icons red-text">highlight_off</i>
+                      <InlineIcon
+                        className="red-text"
+                        icon={closeCircleOutline}
+                        width="1.5em"
+                        height="1.5em"
+                      />
                     </td>
                   </tr>
                 ))}

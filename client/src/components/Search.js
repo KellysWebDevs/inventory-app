@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Icon, InlineIcon } from "@iconify/react";
+import magnifyIcon from "@iconify/icons-mdi/magnify";
 
 class Search extends Component {
   setSearchQuery = (e) => {
@@ -12,7 +14,12 @@ class Search extends Component {
         autoComplete="off"
         onSubmit={(e) => e.preventDefault()}
       >
-        <i className="material-icons prefix">search</i>
+        <InlineIcon
+          className="prefix"
+          icon={magnifyIcon}
+          width="1.5em"
+          height="1.5em"
+        />
         <input
           id="search"
           type="text"

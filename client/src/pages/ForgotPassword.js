@@ -4,6 +4,8 @@ import AutoTitle from "../components/AutoTitle";
 import { connect } from "react-redux";
 import classnames from "classnames";
 import { sendForgotEmail } from "../redux/actions/authActions";
+import { InlineIcon } from "@iconify/react";
+import sendIcon from "@iconify/icons-mdi/send";
 
 class ForgotPassword extends React.Component {
   state = {
@@ -68,7 +70,13 @@ class ForgotPassword extends React.Component {
               <div className="row">
                 <div className="col s12">
                   <button type="submit" className="btn btn-small">
-                    Send Email <i className="material-icons right">send</i>
+                    Send Email
+                    <InlineIcon
+                      className="ml-1"
+                      icon={sendIcon}
+                      width="24px"
+                      height="24px"
+                    />
                   </button>
                 </div>
               </div>

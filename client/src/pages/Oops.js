@@ -1,4 +1,6 @@
 import React from "react";
+import { InlineIcon } from "@iconify/react";
+import homeIcon from "@iconify/icons-mdi/home";
 
 class Oops extends React.Component {
   state = {
@@ -76,7 +78,7 @@ class Oops extends React.Component {
             </p>
           </div>
         </div>
-        <div className="row">
+        <div className="row mt-3">
           <div className="col s12">
             <p
               style={{
@@ -101,22 +103,10 @@ class Oops extends React.Component {
           </div>
         </div>
 
-        <div className="row">
+        <div className="row mt-5">
           <div className="col s12">
             <a href="/" className="btn btn-floating">
-              <i
-                className="material-icons"
-                style={{
-                  transform: "translate(13px, 5px)",
-                  textShadow: `
-                    -10px -10px rgba(225,0,0,0.8),
-                    -20px -3px rgba(0,0,225,0.8),
-                    -15px 5px rgba(0,225,0.8)
-                  `,
-                }}
-              >
-                home
-              </i>
+              <InlineIcon icon={homeIcon} width="1.5em" height="1.5em" />
             </a>
           </div>
         </div>

@@ -1,4 +1,6 @@
 import React from "react";
+import { InlineIcon } from "@iconify/react";
+import homeIcon from "@iconify/icons-mdi/home";
 
 class Error404 extends React.Component {
   render() {
@@ -33,7 +35,7 @@ class Error404 extends React.Component {
         <div className="row">
           <div className="col s12">
             <a href="/" className="btn btn-floating">
-              <i className="material-icons">home</i>
+              <InlineIcon icon={homeIcon} width="1.5em" height="1.5em" />{" "}
             </a>
           </div>
         </div>

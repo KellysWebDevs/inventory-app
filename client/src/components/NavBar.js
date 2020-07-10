@@ -1,6 +1,12 @@
 import React from "react";
 import ReactToPrint from "react-to-print";
 import M from "materialize-css";
+import { InlineIcon } from "@iconify/react";
+import barcodeScan from "@iconify/icons-mdi/barcode-scan";
+import logoutIcon from "@iconify/icons-mdi/logout";
+import plusIcon from "@iconify/icons-mdi/plus";
+import printerIcon from "@iconify/icons-mdi/printer";
+import menuIcon from "@iconify/icons-mdi/menu";
 
 class NavBar extends React.Component {
   componentDidMount() {
@@ -16,14 +22,24 @@ class NavBar extends React.Component {
               <ul className="left hide-on-small-only">
                 <li className="ml-1">
                   <a href="#!">
-                    <i className="material-icons left">add</i>
+                    <InlineIcon
+                      className="mr-1"
+                      icon={plusIcon}
+                      width="24px"
+                      height="24px"
+                    />
                     ADD ITEM
                   </a>
                 </li>
 
                 <li>
                   <a href="#!">
-                    <i className="material-icons">barcode-scan</i>
+                    <InlineIcon
+                      className="mr-1"
+                      icon={barcodeScan}
+                      width="24px"
+                      height="24px"
+                    />
                     SCAN
                   </a>
                 </li>
@@ -32,7 +48,12 @@ class NavBar extends React.Component {
                   <ReactToPrint
                     trigger={() => (
                       <a href="#!">
-                        <i className="material-icons left">print</i>
+                        <InlineIcon
+                          className="mr-1"
+                          icon={printerIcon}
+                          width="24px"
+                          height="24px"
+                        />
                         PRINT
                       </a>
                     )}
@@ -43,13 +64,8 @@ class NavBar extends React.Component {
               <ul id="nav-mobile" className="right hide-on-small-only">
                 <li>
                   <a href="#!" onClick={this.props.logoutUser}>
+                    <InlineIcon icon={logoutIcon} width="24px" height="24px" />
                     LOG OUT
-                    <i
-                      className="iconify ml-1"
-                      data-icon="ls:logout"
-                      data-inline="false"
-                      style={{ width: "20px", height: "20px" }}
-                    ></i>
                   </a>
                 </li>
               </ul>
@@ -61,7 +77,7 @@ class NavBar extends React.Component {
                     className="sidenav-trigger"
                     data-target="mobile-sidenav"
                   >
-                    <i className="material-icons middle">menu</i>
+                    <InlineIcon icon={menuIcon} width="24px" height="24px" />
                   </a>
                 </li>
               </ul>
@@ -78,14 +94,24 @@ class NavBar extends React.Component {
         >
           <li>
             <a href="#!">
-              <i className="material-icons left">add</i>
+              <InlineIcon
+                className="mr-2"
+                icon={plusIcon}
+                width="24px"
+                height="24px"
+              />{" "}
               ADD ITEM
             </a>
           </li>
 
           <li>
             <a href="#!">
-              <i className="material-icons">barcode-scan</i>
+              <InlineIcon
+                className="mr-2"
+                icon={barcodeScan}
+                width="24px"
+                height="24px"
+              />{" "}
               SCAN
             </a>
           </li>
@@ -94,7 +120,12 @@ class NavBar extends React.Component {
             <ReactToPrint
               trigger={() => (
                 <a href="#!">
-                  <i className="material-icons left">print</i>
+                  <InlineIcon
+                    className="mr-2"
+                    icon={printerIcon}
+                    width="24px"
+                    height="24px"
+                  />{" "}
                   PRINT
                 </a>
               )}
@@ -103,13 +134,13 @@ class NavBar extends React.Component {
 
           <li>
             <a href="#!" onClick={this.props.logoutUser}>
+              <InlineIcon
+                icon={logoutIcon}
+                className="mr-2"
+                width="24px"
+                height="24px"
+              />
               LOG OUT
-              <i
-                className="iconify ml-1"
-                data-icon="ls:logout"
-                data-inline="false"
-                style={{ width: "20px", height: "20px" }}
-              ></i>
             </a>
           </li>
         </ul>
