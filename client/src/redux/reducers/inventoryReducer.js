@@ -7,9 +7,10 @@ import {
 
 const initialState = {
   categories: [],
-  itemsLoading: true,
+  itemsLoading: false,
   searchQuery: "",
   categoryFilter: "",
+  error: "",
 };
 
 const inventoryReducer = (state = initialState, action) => {
@@ -20,10 +21,14 @@ const inventoryReducer = (state = initialState, action) => {
         categories: action.payload,
       };
     case SET_ITEMS_LOADING:
-      return {
-        ...state,
-        itemsLoading: action.payload,
-      };
+      if (state.itemsLoading === action.payload) {
+        return state;
+      } else {
+        return {
+          ...state,
+          itemsLoading: action.payload,
+        };
+      }
     case SET_SEARCH_QUERY:
       return {
         ...state,

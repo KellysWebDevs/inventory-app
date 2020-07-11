@@ -6,7 +6,11 @@ import {
   SET_CATEGORY_FILTER,
 } from "./types";
 
+import M from "materialize-css";
+
 export const getItems = () => (dispatch) => {
+  dispatch({ type: SET_ITEMS_LOADING, payload: true });
+
   axios
     .get("/api/items")
     .then((res) => {
@@ -91,12 +95,37 @@ export const addItem = (itemInfo) => (dispatch) => {
   axios
     .post("/api/items/add", itemInfo)
     .then((res) => {
-      console.log(res.data);
-      // getItems()(dispatch);
+      getItems()(dispatch);
+
+      M.toast({
+        html: "Item successfully added!",
+        classes: "green",
+      });
     })
-    .catch((err) => console.error(err));
+    .catch((err) => {
+      if (err.response.data.error === "exists") {
+        M.toast({
+          html: "Item already exists!",
+          classes: "red",
+        });
+      }
+    });
 };
 
-export const deleteItem = () => (dispatch) => {
-  axios.post("/api/items/delete");
+export const deleteItem = (id, itemsLength) => (dispatch) => {
+  if (itemsLength === 1) {
+    setCategoryFilter("")(dispatch);
+  }
+
+  axios
+    .delete(`/api/items/${id}`)
+    .then((res) => {
+      getItems()(dispatch);
+
+      M.toast({
+        html: "Item successfully deleted!",
+        classes: "green",
+      });
+    })
+    .catch((err) => console.error(err));
 };

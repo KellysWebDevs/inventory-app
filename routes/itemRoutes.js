@@ -4,7 +4,7 @@ const itemController = require("../controllers/itemController");
 const { catchErrors } = require("../handlers/errorHandlers");
 
 itemRoutes.get("/", catchErrors(itemController.getItems));
-
 itemRoutes.post("/add", itemController.addItem);
+itemRoutes.delete("/:id", itemController.deleteItem);
 
 module.exports = itemRoutes;

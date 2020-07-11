@@ -28,10 +28,18 @@ class AddItemModal extends React.Component {
     this.props.addItem({ ...this.state });
 
     this.modalInstance.close();
+
+    this.resetState();
   };
 
   handleChange = (e) => {
-    this.setState({ [e.target.name]: capitalize(e.target.value) });
+    const { name, value } = e.target;
+
+    if (name === "item_name" || name === "item_category") {
+      this.setState({ [name]: capitalize(value) });
+    } else {
+      this.setState({ [name]: value });
+    }
   };
 
   componentDidMount() {
@@ -39,7 +47,6 @@ class AddItemModal extends React.Component {
       inDuration: 500,
       outDuration: 500,
       onOpenStart: M.updateTextFields,
-      onCloseEnd: this.resetState,
     });
   }
 

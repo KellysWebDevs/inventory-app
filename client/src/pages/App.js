@@ -18,7 +18,9 @@ import {
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.getItems();
+    if (!this.props.categories.length) {
+      this.props.getItems();
+    }
   }
 
   render() {

@@ -35,13 +35,19 @@ exports.addItem = (req, res) => {
         barcodes: barcode ? [barcode] : [],
       });
 
-      res.json(newItem);
+      newItem
+        .save()
+        .then((item) => {
+          res.json(item);
+        })
+        .catch((err) => console.error(err));
+      // res.json(newItem);
     })
     .catch((err) => console.error(err));
 };
 
 exports.deleteItem = (req, res) => {
-  Item.deleteOne({ _id: req.body._id })
+  Item.deleteOne({ _id: req.params.id })
     .then(() => {
       res.json("success");
     })
