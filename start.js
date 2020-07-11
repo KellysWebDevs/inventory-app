@@ -6,7 +6,7 @@ require("dotenv").config();
 // Connect to the Database and handle any bad connections
 mongoose.connect(process.env.DATABASE, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 
 // mongoose.connection.on("error", err => {
@@ -19,6 +19,7 @@ require("./models");
 // Start the app
 const app = require("./app");
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+app.listen(PORT, (err) => {
+  if (err) console.error(err);
   console.log(`express is running on port ${PORT}`);
 });
