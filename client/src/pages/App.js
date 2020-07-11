@@ -1,7 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import M from "materialize-css";
-import BarcodeReader from "./BarcodeReader";
 import "../sass/index.scss";
 
 import CategoryCard from "../components/CategoryCard";

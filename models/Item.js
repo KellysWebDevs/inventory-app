@@ -14,6 +14,9 @@ const itemSchema = new Schema({
     type: String,
     required: true,
   },
+  barcodes: {
+    type: Array,
+  },
 });
 
 mongoose.model("Item", itemSchema);

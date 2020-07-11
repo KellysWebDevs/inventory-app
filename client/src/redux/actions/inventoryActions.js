@@ -86,3 +86,17 @@ export const setSearchQuery = (query) => (dispatch) => {
 export const setCategoryFilter = (filter) => (dispatch) => {
   dispatch({ type: SET_CATEGORY_FILTER, payload: filter });
 };
+
+export const addItem = (itemInfo) => (dispatch) => {
+  axios
+    .post("/api/items/add", itemInfo)
+    .then((res) => {
+      console.log(res.data);
+      // getItems()(dispatch);
+    })
+    .catch((err) => console.error(err));
+};
+
+export const deleteItem = () => (dispatch) => {
+  axios.post("/api/items/delete");
+};

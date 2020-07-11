@@ -6,10 +6,10 @@ const crypto = require("crypto");
 const sendEmail = require("../mailer");
 
 // Load input validation
-const validateRegisterInput = require("../validation/register");
-const validateLoginInput = require("../validation/login");
-const validateForgotInput = require("../validation/forgot");
-const validateResetInput = require("../validation/reset");
+const validateRegisterInput = require("../validation/user/register");
+const validateLoginInput = require("../validation/user/login");
+const validateForgotInput = require("../validation/user/forgot");
+const validateResetInput = require("../validation/user/reset");
 
 exports.registerUser = (req, res) => {
   // Form validation
