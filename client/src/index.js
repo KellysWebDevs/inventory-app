@@ -5,11 +5,10 @@ import { Provider } from "react-redux";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./helpers/setAuthToken";
 import { setCurrentUser, logoutUser } from "./redux/actions/authActions";
-import "./sass/index.scss";
+import "./sass/index.min.css";
+import "materialize-css/dist/css/materialize.min.css";
 import store from "./redux/store/index";
 import * as serviceWorker from "./serviceWorker";
-
-import "materialize-css/dist/css/materialize.min.css";
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {

@@ -1,4 +1,7 @@
 import React from "react";
+import { InlineIcon } from "@iconify/react";
+import barcodeScan from "@iconify/icons-mdi/barcode-scan";
+import closeCircleOutline from "@iconify/icons-mdi/close-circle-outline";
 
 class categoryFilterTable extends React.Component {
   render() {
@@ -20,32 +23,31 @@ class categoryFilterTable extends React.Component {
             <table>
               <thead>
                 <tr>
-                  <th>Item</th>
-                  <th>Amount</th>
-                  <th>Bar Code</th>
-                  <th>Remove</th>
+                  <th className="pl-1">Item</th>
+                  <th className="center-align">Amount</th>
+                  <th className="center-align">Bar Code</th>
+                  <th className="center-align">Remove</th>
                 </tr>
               </thead>
               <tbody>
                 {category.items.map((item) => (
                   <tr key={item.name}>
-                    <td>{item.name}</td>
-                    <td>{item.amount}</td>
-                    <td>
-                      <i
-                        className="iconify"
-                        data-icon="mdi:barcode-scan"
-                        data-inline="false"
-                        style={{ width: "24px", height: "24px" }}
-                      ></i>
+                    <td className="pl-1">{item.name}</td>
+                    <td className="center-align">{item.amount}</td>
+                    <td className="center-align">
+                      <InlineIcon
+                        icon={barcodeScan}
+                        width="1.5em"
+                        height="1.5em"
+                      />
                     </td>
-                    <td>
-                      <i
-                        className="iconify red-text"
-                        data-icon="el:remove-circle"
-                        data-inline="false"
-                        style={{ width: "24px", height: "24px" }}
-                      ></i>
+                    <td className="center-align">
+                      <InlineIcon
+                        className="red-text"
+                        icon={closeCircleOutline}
+                        width="1.5em"
+                        height="1.5em"
+                      />{" "}
                     </td>
                   </tr>
                 ))}

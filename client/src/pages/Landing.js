@@ -1,5 +1,7 @@
 import React from "react";
 import M from "materialize-css";
+import { InlineIcon } from "@iconify/react";
+import menuIcon from "@iconify/icons-mdi/menu";
 
 class Landing extends React.Component {
   state = {
@@ -50,7 +52,7 @@ class Landing extends React.Component {
             className={`btn btn-floating btn-large pink lighten-1 ${this.state.tapTargetPulse}`}
             onClick={this.openTapTarget}
           >
-            <i className="material-icons">menu</i>
+            <InlineIcon icon={menuIcon} width="24px" height="24px" />
           </button>
         </div>
         <div
