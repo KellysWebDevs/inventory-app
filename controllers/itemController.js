@@ -32,7 +32,7 @@ exports.addItem = (req, res) => {
         name,
         amount,
         category,
-        barcode: barcode ? barcode : undefined,
+        barcodes: barcode ? [barcode] : [],
       });
 
       res.json(newItem);
