@@ -3,6 +3,7 @@ import M from "materialize-css";
 
 import { connect } from "react-redux";
 import { addItem } from "../redux/actions/inventoryActions";
+import capitalize from "../helpers/capitalize";
 
 class AddItemModal extends React.Component {
   state = {
@@ -30,7 +31,7 @@ class AddItemModal extends React.Component {
   };
 
   handleChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ [e.target.name]: capitalize(e.target.value) });
   };
 
   componentDidMount() {
