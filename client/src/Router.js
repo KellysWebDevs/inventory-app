@@ -12,7 +12,6 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgotPassword";
 import ResetPassword from "./pages/ResetPassword";
-import ToDo from "./pages/ToDo";
 import Oops from "./pages/Oops";
 import Error404 from "./pages/Error404";
 
@@ -46,7 +45,6 @@ class Router extends React.Component {
               path="/resetpassword/:token"
               component={ResetPassword}
             />
-            <Route exact path="/todo" component={ToDo} />
             <Route exact path="/oops" component={Oops} />
             <Route component={Error404} />
           </Switch>
