@@ -19,7 +19,7 @@ exports.addItem = (req, res) => {
     item_name: name,
     item_amount: amount,
     item_category: category,
-    item_barcode: barcode,
+    item_barcodes: barcodes,
   } = req.body;
 
   Item.findOne({ name })
@@ -32,7 +32,7 @@ exports.addItem = (req, res) => {
         name,
         amount,
         category,
-        barcodes: barcode ? [barcode] : [],
+        barcodes,
       });
 
       newItem
