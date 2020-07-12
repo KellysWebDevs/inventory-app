@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Icon, InlineIcon } from "@iconify/react";
+import { InlineIcon } from "@iconify/react";
 import magnifyIcon from "@iconify/icons-mdi/magnify";
 
 class Search extends Component {
