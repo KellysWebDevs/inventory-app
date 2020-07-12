@@ -1,5 +1,4 @@
 import React from "react";
-import M from "materialize-css";
 import Quagga from "quagga";
 
 class BarcodeScanner extends React.Component {

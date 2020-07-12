@@ -1,6 +1,7 @@
 import React from "react";
 import ReactToPrint from "react-to-print";
 import AddItemModal from "./AddItemModal";
+import ScanItemModal from "./ScanItemModal";
 
 import M from "materialize-css";
 import { InlineIcon } from "@iconify/react";
@@ -49,7 +50,7 @@ class NavBar extends React.Component {
                 </li>
 
                 <li>
-                  <a href="#!">
+                  <a href="#scan-item-modal" className="modal-trigger">
                     <InlineIcon
                       className="mr-1"
                       icon={barcodeScan}
@@ -159,8 +160,8 @@ class NavBar extends React.Component {
                     transform: `rotate(-${
                       this.state.effectValue + 180 / 6
                     }deg)`,
-                    marginLeft: "-20px",
-                    marginTop: "23px",
+                    marginLeft: "-21px",
+                    marginTop: "22px",
                   }}
                 >
                   settings
@@ -173,7 +174,7 @@ class NavBar extends React.Component {
                     fontSize: "34px",
                     transform: `rotate(${this.state.effectValue}deg)`,
                     marginLeft: "-8px",
-                    marginTop: "23px",
+                    marginTop: "22px",
                   }}
                 >
                   settings
@@ -244,6 +245,7 @@ class NavBar extends React.Component {
         </ul>
 
         <AddItemModal />
+        <ScanItemModal />
       </>
     );
   }

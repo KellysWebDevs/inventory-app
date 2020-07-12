@@ -98,118 +98,116 @@ class AddItemModal extends React.Component {
 
   render() {
     return (
-      <div id="add-item-modal-wrapper">
-        <div
-          id="add-item-modal"
-          className="modal modal-fixed-footer"
-          ref={(Modal) => {
-            this.Modal = Modal;
-          }}
-        >
-          <div className="modal-content">
-            <h4 className="grey-text text-darken-2">Add New Item</h4>
+      <div
+        id="add-item-modal"
+        className="modal modal-fixed-footer"
+        ref={(Modal) => {
+          this.Modal = Modal;
+        }}
+      >
+        <div className="modal-content">
+          <h4 className="grey-text text-darken-2">Add New Item</h4>
 
-            <form onSubmit={this.handleSubmit} autoComplete="off">
-              <div className="row">
-                <div className="input-field col s12">
-                  <input
-                    name="item_name"
-                    type="text"
-                    value={this.state.item_name}
-                    required
-                    onChange={this.handleChange}
-                  />
-                  <label htmlFor="item_name">Name</label>
-                </div>
+          <form onSubmit={this.handleSubmit} autoComplete="off">
+            <div className="row">
+              <div className="input-field col s12">
+                <input
+                  name="item_name"
+                  type="text"
+                  value={this.state.item_name}
+                  required
+                  onChange={this.handleChange}
+                />
+                <label htmlFor="item_name">Name</label>
               </div>
+            </div>
 
-              <div className="row">
-                <div className="input-field col s12">
-                  <input
-                    name="item_amount"
-                    type="number"
-                    min="0"
-                    value={this.state.item_amount}
-                    required
-                    onChange={this.handleChange}
-                  />
-                  <label htmlFor="item_amount">Amount</label>
-                </div>
+            <div className="row">
+              <div className="input-field col s12">
+                <input
+                  name="item_amount"
+                  type="number"
+                  min="0"
+                  value={this.state.item_amount}
+                  required
+                  onChange={this.handleChange}
+                />
+                <label htmlFor="item_amount">Amount</label>
               </div>
+            </div>
 
-              <div className="row">
-                <div className="input-field col s12">
-                  <input
-                    name="item_category"
-                    type="text"
-                    value={this.state.item_category}
-                    required
-                    onChange={this.handleChange}
-                  />
-                  <label htmlFor="item_category">Category</label>
-                </div>
+            <div className="row">
+              <div className="input-field col s12">
+                <input
+                  name="item_category"
+                  type="text"
+                  value={this.state.item_category}
+                  required
+                  onChange={this.handleChange}
+                />
+                <label htmlFor="item_category">Category</label>
               </div>
+            </div>
 
-              <div className="row">
-                <div className="col s12">
-                  <ul
-                    className="collapsible"
-                    ref={(Collapsible) => (this.Collapsible = Collapsible)}
-                  >
-                    <li>
-                      <div className="collapsible-header">
-                        <InlineIcon
-                          className="mr-1"
-                          icon={barcodeScan}
-                          width="1.5em"
-                          height="1.5em"
-                        />
-                        <strong>Activate Barcode Scanner</strong>
-                        <span className="ml-1">(optional)</span>
-                      </div>
-                      <div className="collapsible-body center-align">
-                        <BarcodeScanner
-                          onScanned={this.onScanned}
-                          ref={(Scanner) => {
-                            this.Scanner = Scanner;
-                          }}
-                        />
-                      </div>
-                    </li>
-                  </ul>
-
-                  {this.state.item_barcodes.map((barcode) => (
-                    <div key={barcode} className="chip">
-                      {barcode}
-                      <i
-                        className="material-icons"
-                        style={{ cursor: "pointer" }}
-                        onClick={() => this.removeBarcode(barcode)}
-                      >
-                        close
-                      </i>
+            <div className="row">
+              <div className="col s12">
+                <ul
+                  className="collapsible"
+                  ref={(Collapsible) => (this.Collapsible = Collapsible)}
+                >
+                  <li>
+                    <div className="collapsible-header">
+                      <InlineIcon
+                        className="mr-1"
+                        icon={barcodeScan}
+                        width="1.5em"
+                        height="1.5em"
+                      />
+                      <strong>Activate Barcode Scanner</strong>
+                      <span className="ml-1">(optional)</span>
                     </div>
-                  ))}
-                </div>
-              </div>
+                    <div className="collapsible-body center-align">
+                      <BarcodeScanner
+                        onScanned={this.onScanned}
+                        ref={(Scanner) => {
+                          this.Scanner = Scanner;
+                        }}
+                      />
+                    </div>
+                  </li>
+                </ul>
 
-              <div className="row">
-                <div className="col s12">
-                  <button
-                    type="submit"
-                    className="btn white grey-text text-darken-3 waves-effect waves-green"
-                  >
-                    <i className="material-icons right">add</i>
-                    Add
-                  </button>
-                </div>
+                {this.state.item_barcodes.map((barcode) => (
+                  <div key={barcode} className="chip">
+                    {barcode}
+                    <i
+                      className="material-icons"
+                      style={{ cursor: "pointer" }}
+                      onClick={() => this.removeBarcode(barcode)}
+                    >
+                      close
+                    </i>
+                  </div>
+                ))}
               </div>
-            </form>
-          </div>
+            </div>
 
-          <div className="modal-footer grey lighten-3">
-            <button className="modal-close btn-flat">Cancel</button>
-          </div>
+            <div className="row">
+              <div className="col s12">
+                <button
+                  type="submit"
+                  className="btn white grey-text text-darken-3 waves-effect waves-green"
+                >
+                  <i className="material-icons right">add</i>
+                  Add
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div className="modal-footer grey lighten-3">
+          <button className="modal-close btn-flat">Cancel</button>
         </div>
       </div>
     );
