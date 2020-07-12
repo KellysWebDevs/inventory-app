@@ -90,8 +90,6 @@ class AddItemModal extends React.Component {
     this.props.addItem({ ...this.state });
 
     this.modalInstance.close();
-
-    this.resetState();
   };
 
   handleChange = (e) => {
@@ -108,12 +106,8 @@ class AddItemModal extends React.Component {
     this.modalInstance = M.Modal.init(this.Modal, {
       inDuration: 500,
       outDuration: 500,
-<<<<<<< HEAD
       onOpenStart: M.updateTextFields,
-=======
-      // onOpenStart: this.modalStart,
       onCloseEnd: this.resetState,
->>>>>>> ad35d0e263ada42f15045ec41f9809e289c306f2
     });
 
     M.Collapsible.init(this.Collapsible, {

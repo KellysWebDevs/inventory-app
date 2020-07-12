@@ -112,6 +112,20 @@ export const addItem = (itemInfo) => (dispatch) => {
     });
 };
 
+export const editItem = (id, itemInfo) => (dispatch) => {
+  axios
+    .post(`/api/items/edit/${id}`, itemInfo)
+    .then((res) => {
+      getItems()(dispatch);
+
+      M.toast({
+        html: "Changes successfully saved!",
+        classes: "green",
+      });
+    })
+    .catch((err) => console.error(err));
+};
+
 export const deleteItem = (id, itemsLength) => (dispatch) => {
   if (itemsLength === 1) {
     setCategoryFilter("")(dispatch);

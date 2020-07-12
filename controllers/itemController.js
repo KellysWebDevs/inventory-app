@@ -46,6 +46,12 @@ exports.addItem = (req, res) => {
     .catch((err) => console.error(err));
 };
 
+exports.editItem = (req, res) => {
+  Item.findOneAndUpdate({ _id: req.params.id }, req, { new: true })
+    .then(() => res.json("success"))
+    .catch((err) => console.error(err));
+};
+
 exports.deleteItem = (req, res) => {
   Item.deleteOne({ _id: req.params.id })
     .then(() => {
