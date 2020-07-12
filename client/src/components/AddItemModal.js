@@ -1,5 +1,9 @@
 import React from "react";
 import M from "materialize-css";
+import { InlineIcon } from "@iconify/react";
+import barcodeScan from "@iconify/icons-mdi/barcode-scan";
+
+import Quagga from "quagga";
 
 import { connect } from "react-redux";
 import { addItem } from "../redux/actions/inventoryActions";
@@ -13,6 +17,9 @@ class AddItemModal extends React.Component {
     item_barcode: "",
   };
 
+  quaggaError = false;
+  scanCount = 0;
+
   resetState = () => {
     this.setState({
       item_name: "",
@@ -20,6 +27,61 @@ class AddItemModal extends React.Component {
       item_category: "",
       item_barcode: "",
     });
+
+    Quagga.stop();
+  };
+
+  collapsibleStart = () => {
+    M.updateTextFields();
+
+    Quagga.init(
+      {
+        inputStream: {
+          name: "Add",
+          type: "LiveStream",
+          target: this.Camera,
+          constraints: {
+            width: window.innerWidth / 3,
+            height: window.innerWidth / 3,
+          },
+        },
+        decoder: {
+          readers: ["ean_reader"],
+        },
+      },
+      (err) => {
+        if (err) {
+          console.error(err);
+          this.quaggaError = true;
+          return;
+        }
+
+        Quagga.start();
+
+        Quagga.onDetected((info) => {
+          if (this.scanCount === 10) {
+            console.log(info.codeResult.code);
+
+            if (this.scanCountTimeout) {
+              clearTimeout(this.scanCountTimeout);
+            }
+
+            this.scanCount = 0;
+          } else {
+            if (this.scanCountTimeout) {
+              clearTimeout(this.scanCountTimeout);
+            }
+            this.scanCountTimeout = setTimeout(() => {
+              this.scanCount = 0;
+            }, 2000);
+
+            console.log(this.scanCount);
+
+            this.scanCount++;
+          }
+        });
+      }
+    );
   };
 
   handleSubmit = (e) => {
@@ -46,7 +108,17 @@ class AddItemModal extends React.Component {
     this.modalInstance = M.Modal.init(this.Modal, {
       inDuration: 500,
       outDuration: 500,
+<<<<<<< HEAD
       onOpenStart: M.updateTextFields,
+=======
+      // onOpenStart: this.modalStart,
+      onCloseEnd: this.resetState,
+>>>>>>> ad35d0e263ada42f15045ec41f9809e289c306f2
+    });
+
+    M.Collapsible.init(this.Collapsible, {
+      accordian: false,
+      onOpenStart: this.collapsibleStart,
     });
   }
 
@@ -106,7 +178,7 @@ class AddItemModal extends React.Component {
 
               <div className="row">
                 <div className="input-field col s12">
-                  <input
+                  {/*<input
                     name="item_barcode"
                     type="text"
                     value={this.state.item_barcode}
@@ -115,7 +187,32 @@ class AddItemModal extends React.Component {
                   <label htmlFor="item_barcode">Barcode</label>
                   <span htmlFor="item_barcode" className="helper-text">
                     optional
-                  </span>
+                  </span>*/}
+
+                  <ul
+                    className="collapsible"
+                    ref={(Collapsible) => (this.Collapsible = Collapsible)}
+                  >
+                    <li>
+                      <div className="collapsible-header">
+                        <InlineIcon
+                          className="mr-1"
+                          icon={barcodeScan}
+                          width="1.5em"
+                          height="1.5em"
+                        />
+                        <strong>Activate Barcode Scanner</strong>
+                        <span className="ml-1">(optional)</span>
+                      </div>
+                      <div
+                        className="collapsible-body center-align"
+                        id="barcode-scan-container"
+                        ref={(Camera) => {
+                          this.Camera = Camera;
+                        }}
+                      ></div>
+                    </li>
+                  </ul>
                 </div>
               </div>
 
