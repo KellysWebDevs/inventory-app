@@ -114,7 +114,7 @@ export const addItem = (itemInfo) => (dispatch) => {
 
 export const editItem = (id, itemInfo) => (dispatch) => {
   axios
-    .post(`/api/items/edit/${id}`, itemInfo)
+    .post(`/api/items/edit`, { ...itemInfo, id })
     .then((res) => {
       getItems()(dispatch);
 
