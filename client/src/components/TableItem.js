@@ -66,10 +66,10 @@ class TableItem extends React.Component {
           />
         </td>
         <td className="center-align">{item.amount}</td>
-        <td className="center-align">
+        <td className="barcode-cell center-align">
           <InlineIcon icon={barcodeScan} width="1.5em" height="1.5em" />
         </td>
-        <td className="center-align">
+        <td className="remove-cell center-align">
           <button className="btn-flat" onClick={this.handleDelete}>
             <InlineIcon
               className="red-text"

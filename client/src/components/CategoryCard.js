@@ -21,8 +21,8 @@ class CategoryCard extends Component {
                 <tr>
                   <th className="pl-1">Item</th>
                   <th className="center-align">Amount</th>
-                  <th className="center-align">Bar Code</th>
-                  <th className="center-align">Remove</th>
+                  <th className="barcode-header center-align">Bar Code</th>
+                  <th className="remove-header center-align">Remove</th>
                 </tr>
               </thead>
 
