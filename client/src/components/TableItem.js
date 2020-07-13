@@ -16,6 +16,8 @@ class TableItem extends React.Component {
     item_barcodes: this.props.item.barcodes || [],
   };
 
+  escaped = false;
+
   setBarcodeState = (barcode) => {
     if (!this.state.item_barcodes.includes(barcode)) {
       const barcodeArray = [...this.state.item_barcodes];
@@ -53,6 +55,7 @@ class TableItem extends React.Component {
     }
 
     if (e.key === "Escape") {
+      this.escaped = true;
       this.setState({
         item_name: this.props.item.name,
         item_amount: this.props.item.amount,
@@ -61,14 +64,20 @@ class TableItem extends React.Component {
     }
   };
 
-  handleBlur = (e) => {
-    this.props.editItem(
-      {
-        id: this.props.item._id,
-        ...this.state,
-      },
-      this.props.item.category
-    );
+  handleBlur = () => {
+    if (!this.escaped) {
+      this.props.editItem(
+        {
+          id: this.props.item._id,
+          ...this.state,
+        },
+        this.props.item.category
+      );
+    }
+  };
+
+  handleFocus = () => {
+    this.escaped = false;
   };
 
   handleDelete = (e) => {
@@ -80,6 +89,8 @@ class TableItem extends React.Component {
   };
 
   render() {
+    const { item } = this.props;
+
     return (
       <tr>
         <td className="pl-1">
@@ -91,6 +102,7 @@ class TableItem extends React.Component {
             onChange={this.handleChange}
             onKeyDown={this.handleKeyDown}
             onBlur={this.handleBlur}
+            onFocus={this.handleFocus}
           />
         </td>
         <td className="center-align">
