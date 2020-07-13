@@ -80,8 +80,6 @@ class TableItem extends React.Component {
   };
 
   render() {
-    const { item } = this.props;
-
     return (
       <tr>
         <td className="pl-1">
@@ -95,7 +93,18 @@ class TableItem extends React.Component {
             onBlur={this.handleBlur}
           />
         </td>
-        <td className="center-align">{item.amount}</td>
+        <td className="center-align">
+          <input
+            style={{ borderBottom: "none" }}
+            className="center-align"
+            name="item_amount"
+            type="number"
+            value={this.state.item_amount}
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
+            onBlur={this.handleBlur}
+          />
+        </td>
         <td className="barcode-cell center-align">
           <a href={`#${item._id}-modal`} className="modal-trigger btn-flat">
             <InlineIcon icon={barcodeScan} width="1.5em" height="1.5em" />

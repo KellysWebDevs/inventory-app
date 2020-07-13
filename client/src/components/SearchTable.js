@@ -25,7 +25,7 @@ class SearchTable extends React.Component {
             <tr>
               <th className="pl-1">Item</th>
               <th className="center-align">Amount</th>
-              <th className="barcode-header center-align">Bar Code</th>
+              <th className="barcode-header center-align">Barcode</th>
               <th className="remove-header center-align">Remove</th>
             </tr>
           </thead>
