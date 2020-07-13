@@ -11,12 +11,29 @@ class CategoryFilter extends React.Component {
     }
   };
 
+  resetFilter = () => {
+    const { setCategoryFilter } = this.props;
+
+    setCategoryFilter("");
+  };
+
   render() {
     const { categories, categoryFilter } = this.props;
 
     return (
       <>
         <h6>Filter by category:</h6>
+
+        <div
+          className={`chip hoverable unselectable
+            ${categoryFilter === "" ? "black white-text" : "white black-text"}
+          `}
+          style={{ border: "1px solid #333" }}
+          onClick={() => this.resetFilter()}
+        >
+          ALL
+        </div>
+
         {categories.map((category) => (
           <div
             key={category.name}
