@@ -2,9 +2,36 @@ import React from "react";
 import M from "materialize-css";
 import BarcodeScanner from "./BarcodeScanner";
 
+import { connect } from "react-redux";
+import { editItem } from "../redux/actions/inventoryActions";
+
 class ScanItemModal extends React.Component {
+  state = {
+    selectedRadio: "add_item",
+  };
+
   onScanned = (barcode) => {
-    M.toast({ html: "Item scanned!", classes: "blue" });
+    let item;
+    this.props.categories.forEach((category, i) => {
+      item = category.items.find(
+        (foundItem) =>
+          foundItem.barcodes && foundItem.barcodes.includes(barcode)
+      );
+    });
+
+    if (item) {
+      if (this.state.selectedRadio === "add_item") {
+        M.toast({ html: "Added item!", classes: "green" });
+      } else if (this.state.selectedRadio === "sub_item") {
+        M.toast({ html: "Subtracted item!", classes: "green" });
+      }
+    } else {
+      M.toast({ html: "That item does not exist!", classes: "red" });
+    }
+  };
+
+  handleRadioChange = (e) => {
+    this.setState({ selectedRadio: e.target.value });
   };
 
   componentDidMount() {
@@ -31,13 +58,25 @@ class ScanItemModal extends React.Component {
               <form onSubmit={(e) => e.preventDefault()}>
                 <p>
                   <label>
-                    <input name="add_sub_rad" type="radio" defaultChecked />
+                    <input
+                      name="add_sub_rad"
+                      type="radio"
+                      value="add_item"
+                      checked={this.state.selectedRadio === "add_item"}
+                      onChange={this.handleRadioChange}
+                    />
                     <span>Add Item</span>
                   </label>
                 </p>
                 <p>
                   <label>
-                    <input name="add_sub_rad" type="radio" />
+                    <input
+                      name="add_sub_rad"
+                      type="radio"
+                      value="sub_item"
+                      checked={this.state.selectedRadio === "sub_item"}
+                      onChange={this.handleRadioChange}
+                    />
                     <span>Subtract Item</span>
                   </label>
                 </p>
@@ -63,4 +102,8 @@ class ScanItemModal extends React.Component {
   }
 }
 
-export default ScanItemModal;
+const mapStateToProps = ({ inventory }) => ({
+  categories: inventory.categories,
+});
+
+export default connect(mapStateToProps, { editItem })(ScanItemModal);

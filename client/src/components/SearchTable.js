@@ -1,10 +1,17 @@
 import React from "react";
-
 import TableItem from "./TableItem";
 
 class SearchTable extends React.Component {
   render() {
     const { categories, searchQuery } = this.props;
+
+    const items = [];
+    categories.forEach((category) => {
+      category.items.forEach((item) => {
+        if (item.name.toLowerCase().includes(searchQuery.toLowerCase()))
+          items.push(item);
+      });
+    });
 
     return (
       <div className="container">
@@ -23,12 +30,14 @@ class SearchTable extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {categories.map((category) =>
-              category.items.map((item) =>
-                item.name.toLowerCase().includes(searchQuery.toLowerCase()) ? (
-                  <TableItem key={item.name} item={item} />
-                ) : null
-              )
+            {items.length ? (
+              items.map((item) => <TableItem key={item.name} item={item} />)
+            ) : (
+              <tr>
+                <td colSpan="4">
+                  <h6 className="center">No search results</h6>
+                </td>
+              </tr>
             )}
           </tbody>
         </table>

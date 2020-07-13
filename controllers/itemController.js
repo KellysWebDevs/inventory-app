@@ -47,7 +47,11 @@ exports.addItem = (req, res) => {
 };
 
 exports.editItem = (req, res) => {
-  Item.findOneAndUpdate({ _id: req.params.id }, req, { new: true })
+  Item.findOneAndUpdate(
+    { _id: req.body.id },
+    { name: req.body.item_name, amount: req.body.item_amount },
+    { useFindAndModify: false }
+  )
     .then(() => res.json("success"))
     .catch((err) => console.error(err));
 };

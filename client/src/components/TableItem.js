@@ -25,7 +25,6 @@ class TableItem extends React.Component {
 
   handleKeyDown = (e) => {
     if (e.key === "Enter") {
-      this.props.editItem({ ...this.state });
       e.target.blur();
     }
 
@@ -39,7 +38,7 @@ class TableItem extends React.Component {
   };
 
   handleBlur = (e) => {
-    this.props.editItem({ ...this.state });
+    this.props.editItem(this.props.item._id, { ...this.state });
   };
 
   handleDelete = (e) => {
