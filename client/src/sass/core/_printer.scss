@@ -18,6 +18,7 @@
 
   .category-card {
     page-break-inside: avoid;
+    overflow: visible !important;
   }
 
   // hide elements
@@ -37,5 +38,25 @@
 
   @page {
     margin: 2cm;
+    margin-bottom: 0;
+  }
+
+  @page :first {
+    margin: -1cm 2cm;
+
+    @top-center {
+      content: "\ Your Personal Inventory";
+      text-align: center !important;
+    }
+  }
+
+  @top-right {
+    content: counter(page);
+  }
+
+  @bottom-left {
+    content: "\ ©️2020 Family I Love ★ Awesome Inventory App ★ Thanks for inventoring with us!";
+    padding-bottom: 30px;
+    text-align: center !important;
   }
 }
