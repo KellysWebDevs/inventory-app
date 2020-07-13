@@ -37,23 +37,27 @@ class App extends React.Component {
       <div className="container">
         <div className="row">
           <div className="col s12">
-            <h2 className="center hide-on-med-and-down">Inventory Manager</h2>
-            <h3 className="center hide-on-large-only hide-on-small-only">
+            <h2 className="title center hide-on-med-and-down">
+              Inventory Manager
+            </h2>
+            <h3 className="title center hide-on-large-only hide-on-small-only">
               Inventory Manager
             </h3>
-            <h4 className="center hide-on-med-and-up">Inventory Manager</h4>
+            <h4 className="title center hide-on-med-and-up">
+              Inventory Manager
+            </h4>
           </div>
         </div>
 
         <div className="row">
-          <div className="col s12 m6">
+          <div className="filter col s12 m6">
             <CategoryFilter
               categories={categories}
               categoryFilter={categoryFilter}
               setCategoryFilter={this.props.setCategoryFilter}
             />
           </div>
-          <div className="col s12 m6">
+          <div className="search col s12 m6">
             <Search
               setSearchQuery={this.props.setSearchQuery}
               searchQuery={searchQuery}

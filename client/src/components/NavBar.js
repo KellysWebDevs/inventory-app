@@ -1,5 +1,4 @@
 import React from "react";
-import ReactToPrint from "react-to-print";
 import AddItemModal from "./AddItemModal";
 
 import M from "materialize-css";
@@ -61,19 +60,15 @@ class NavBar extends React.Component {
                 </li>
 
                 <li>
-                  <ReactToPrint
-                    trigger={() => (
-                      <a href="#!">
-                        <InlineIcon
-                          className="mr-1"
-                          icon={printerIcon}
-                          width="24px"
-                          height="24px"
-                        />
-                        PRINT
-                      </a>
-                    )}
-                  />
+                  <button
+                    className="btn-flat white-text mr-2"
+                    onClick={() => {
+                      window.print();
+                    }}
+                  >
+                    <InlineIcon icon={printerIcon} width="24px" height="24px" />{" "}
+                    PRINT
+                  </button>
                 </li>
               </ul>
 
@@ -215,19 +210,14 @@ class NavBar extends React.Component {
           </li>
 
           <li>
-            <ReactToPrint
-              trigger={() => (
-                <a href="#!">
-                  <InlineIcon
-                    className="mr-2"
-                    icon={printerIcon}
-                    width="24px"
-                    height="24px"
-                  />{" "}
-                  PRINT
-                </a>
-              )}
-            />
+            <button
+              className="btn-flat white-text mr-2"
+              onClick={() => {
+                window.print();
+              }}
+            >
+              <InlineIcon icon={printerIcon} width="24px" height="24px" /> PRINT
+            </button>
           </li>
 
           <li>
