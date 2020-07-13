@@ -16,6 +16,8 @@ class AddItemModal extends React.Component {
     item_barcodes: [],
   };
 
+  working = true;
+
   resetState = () => {
     this.setState({
       item_name: "",
@@ -26,22 +28,24 @@ class AddItemModal extends React.Component {
   };
 
   onScanned = (barcode) => {
-    if (this.state.item_barcodes.includes(barcode)) {
-      M.toast({
-        html: `Barcode ${barcode} has already been scanned!`,
-        classes: "red",
-      });
-    } else {
-      M.toast({
-        html: `Barcode ${barcode} has been successfuly scanned!`,
-        classes: "green",
-      });
+    if (this.working) {
+      if (this.state.item_barcodes.includes(barcode)) {
+        M.toast({
+          html: `Barcode ${barcode} has already been scanned!`,
+          classes: "red",
+        });
+      } else {
+        M.toast({
+          html: `Barcode ${barcode} has been successfuly scanned!`,
+          classes: "green",
+        });
 
-      const newStateBarcodes = [...this.state.item_barcodes];
-      newStateBarcodes.push(barcode);
-      this.setState({
-        item_barcodes: newStateBarcodes,
-      });
+        const newStateBarcodes = [...this.state.item_barcodes];
+        newStateBarcodes.push(barcode);
+        this.setState({
+          item_barcodes: newStateBarcodes,
+        });
+      }
     }
   };
 
@@ -78,12 +82,22 @@ class AddItemModal extends React.Component {
     this.setState({ item_barcodes: stateBarcodes });
   };
 
+  modalStart = () => {
+    this.working = true;
+    M.updateTextFields();
+  };
+
+  modalEnd = () => {
+    this.resetState();
+    this.working = false;
+  };
+
   componentDidMount() {
     this.modalInstance = M.Modal.init(this.Modal, {
       inDuration: 500,
       outDuration: 500,
-      onOpenStart: M.updateTextFields,
-      onCloseStart: this.resetState,
+      onOpenStart: this.modalStart,
+      onCloseStart: this.modalEnd,
       onCloseEnd: () => {
         this.collapsibleInstance.close();
       },

@@ -47,13 +47,27 @@ exports.addItem = (req, res) => {
 };
 
 exports.editItem = (req, res) => {
-  Item.findOneAndUpdate(
-    { _id: req.body.id },
-    { name: req.body.item_name, amount: req.body.item_amount },
-    { useFindAndModify: false }
-  )
-    .then(() => res.json("success"))
-    .catch((err) => console.error(err));
+  if (req.body.item_barcodes) {
+    Item.findOneAndUpdate(
+      { _id: req.body.id },
+      {
+        name: req.body.item_name,
+        amount: req.body.item_amount,
+        barcodes: req.body.item_barcodes,
+      },
+      { useFindAndModify: false }
+    )
+      .then(() => res.json("success"))
+      .catch((err) => console.error(err));
+  } else {
+    Item.findOneAndUpdate(
+      { _id: req.body.id },
+      { name: req.body.item_name, amount: req.body.item_amount },
+      { useFindAndModify: false }
+    )
+      .then(() => res.json("success"))
+      .catch((err) => console.error(err));
+  }
 };
 
 exports.deleteItem = (req, res) => {

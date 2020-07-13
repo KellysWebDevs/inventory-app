@@ -15,8 +15,8 @@ class BarcodeScanner extends React.Component {
           type: "LiveStream",
           target: this.Camera,
           constraints: {
-            width: window.innerWidth / 3,
-            height: window.innerWidth / 3,
+            width: 700,
+            height: 700,
           },
         },
         decoder: {

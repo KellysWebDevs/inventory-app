@@ -7,6 +7,7 @@ export const SET_ITEMS = "SET_ITEMS";
 export const SET_ITEMS_LOADING = "SET_ITEMS_LOADING";
 export const SET_SEARCH_QUERY = "SET_SEARCH_QUERY";
 export const SET_CATEGORY_FILTER = "SET_CATEGORY_FILTER";
+export const SET_SINGLE_ITEM = "SET_SINGLE_ITEM";
 
 // Error Types
 export const GET_ERRORS = "GET_ERRORS";

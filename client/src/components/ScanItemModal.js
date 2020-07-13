@@ -10,23 +10,57 @@ class ScanItemModal extends React.Component {
     selectedRadio: "add_item",
   };
 
-  onScanned = (barcode) => {
-    let item;
-    this.props.categories.forEach((category, i) => {
-      item = category.items.find(
-        (foundItem) =>
-          foundItem.barcodes && foundItem.barcodes.includes(barcode)
-      );
-    });
+  working = false;
 
-    if (item) {
-      if (this.state.selectedRadio === "add_item") {
-        M.toast({ html: "Added item!", classes: "green" });
-      } else if (this.state.selectedRadio === "sub_item") {
-        M.toast({ html: "Subtracted item!", classes: "green" });
+  onScanned = (barcode) => {
+    if (this.working) {
+      let item;
+      let categoryName;
+      this.props.categories.forEach((category, i) => {
+        item = category.items.find(
+          (foundItem) =>
+            foundItem.barcodes && foundItem.barcodes.includes(barcode)
+        );
+        if (item) {
+          categoryName = category.name;
+        }
+      });
+
+      if (item) {
+        if (this.state.selectedRadio === "add_item") {
+          this.props.editItem(
+            {
+              id: item._id,
+              item_name: item.name,
+              item_amount: item.amount + 1,
+            },
+            categoryName
+          );
+          M.toast({ html: `Added 1 to ${item.name}`, classes: "green" });
+        } else if (this.state.selectedRadio === "sub_item") {
+          if (item.amount > 0) {
+            this.props.editItem(
+              {
+                id: item._id,
+                item_name: item.name,
+                item_amount: item.amount - 1,
+              },
+              categoryName
+            );
+            M.toast({
+              html: `Subtracted 1 from ${item.name}`,
+              classes: "green",
+            });
+          } else {
+            M.toast({
+              html: `You have no more of ${item.name}`,
+              classes: "red",
+            });
+          }
+        }
+      } else {
+        M.toast({ html: "That item does not exist!", classes: "red" });
       }
-    } else {
-      M.toast({ html: "That item does not exist!", classes: "red" });
     }
   };
 
@@ -34,10 +68,20 @@ class ScanItemModal extends React.Component {
     this.setState({ selectedRadio: e.target.value });
   };
 
+  modalStart = () => {
+    this.working = true;
+    this.Scanner.startQuagga();
+  };
+
+  modalEnd = () => {
+    this.Scanner.stopQuagga();
+    this.working = false;
+  };
+
   componentDidMount() {
     M.Modal.init(this.Modal, {
-      onOpenStart: this.Scanner.startQuagga,
-      onCloseEnd: this.Scanner.stopQuagga,
+      onOpenStart: this.modalStart,
+      onCloseEnd: this.modalEnd,
     });
   }
 

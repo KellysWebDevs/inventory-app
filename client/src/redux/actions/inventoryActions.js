@@ -4,6 +4,7 @@ import {
   SET_ITEMS_LOADING,
   SET_SEARCH_QUERY,
   SET_CATEGORY_FILTER,
+  SET_SINGLE_ITEM,
 } from "./types";
 
 import M from "materialize-css";
@@ -112,11 +113,14 @@ export const addItem = (itemInfo) => (dispatch) => {
     });
 };
 
-export const editItem = (id, itemInfo) => (dispatch) => {
+export const editItem = (itemInfo, categoryName) => (dispatch) => {
   axios
-    .post(`/api/items/edit`, { ...itemInfo, id })
+    .post(`/api/items/edit`, { ...itemInfo })
     .then((res) => {
-      getItems()(dispatch);
+      dispatch({
+        type: SET_SINGLE_ITEM,
+        payload: { itemInfo, categoryName },
+      });
 
       M.toast({
         html: "Changes successfully saved!",

@@ -1,4 +1,6 @@
 import React from "react";
+import M from "materialize-css";
+import EditBarcodesModal from "./EditBarcodesModal";
 import { InlineIcon } from "@iconify/react";
 import barcodeScan from "@iconify/icons-mdi/barcode-scan";
 import closeCircleOutline from "@iconify/icons-mdi/close-circle-outline";
@@ -11,6 +13,28 @@ class TableItem extends React.Component {
   state = {
     item_name: this.props.item.name,
     item_amount: this.props.item.amount,
+    item_barcodes: this.props.item.barcodes || [],
+  };
+
+  setBarcodeState = (barcode) => {
+    if (!this.state.item_barcodes.includes(barcode)) {
+      const barcodeArray = [...this.state.item_barcodes];
+      barcodeArray.push(barcode);
+      this.setState({ item_barcodes: barcodeArray });
+
+      M.toast({ html: "Added barcode!", classes: "green" });
+    } else {
+      M.toast({ html: "That barcode already exists!", classes: "red" });
+    }
+  };
+
+  removeBarcode = (barcode) => {
+    const index = this.state.item_barcodes.findIndex(
+      (stateBarcode) => stateBarcode === barcode
+    );
+    const stateBarcodes = [...this.state.item_barcodes];
+    stateBarcodes.splice(index, 1);
+    this.setState({ item_barcodes: stateBarcodes });
   };
 
   handleChange = (e) => {
@@ -38,7 +62,13 @@ class TableItem extends React.Component {
   };
 
   handleBlur = (e) => {
-    this.props.editItem(this.props.item._id, { ...this.state });
+    this.props.editItem(
+      {
+        id: this.props.item._id,
+        ...this.state,
+      },
+      this.props.item.category
+    );
   };
 
   handleDelete = (e) => {
@@ -67,7 +97,17 @@ class TableItem extends React.Component {
         </td>
         <td className="center-align">{item.amount}</td>
         <td className="barcode-cell center-align">
-          <InlineIcon icon={barcodeScan} width="1.5em" height="1.5em" />
+          <a href={`#${item._id}-modal`} className="modal-trigger btn-flat">
+            <InlineIcon icon={barcodeScan} width="1.5em" height="1.5em" />
+          </a>
+
+          <EditBarcodesModal
+            item={item}
+            item_barcodes={this.state.item_barcodes}
+            setBarcodeState={this.setBarcodeState}
+            handleBlur={this.handleBlur}
+            removeBarcode={this.removeBarcode}
+          />
         </td>
         <td className="remove-cell center-align">
           <button className="btn-flat" onClick={this.handleDelete}>
