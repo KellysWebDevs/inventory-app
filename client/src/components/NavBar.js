@@ -210,17 +210,6 @@ class NavBar extends React.Component {
           </li>
 
           <li>
-            <button
-              className="btn-flat white-text mr-2"
-              onClick={() => {
-                window.print();
-              }}
-            >
-              <InlineIcon icon={printerIcon} width="24px" height="24px" /> PRINT
-            </button>
-          </li>
-
-          <li>
             <a href="#!" onClick={this.props.logoutUser}>
               <InlineIcon
                 icon={logoutIcon}

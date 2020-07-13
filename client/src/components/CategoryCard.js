@@ -7,7 +7,9 @@ class CategoryCard extends Component {
     const { category } = this.props;
 
     return (
-      <div className={`${category.color} lighten-${category.lighten}`}>
+      <div
+        className={`${category.color} lighten-${category.lighten} category-card`}
+      >
         <div className="row">
           <div className="col s12">
             <h3 className="center">{category.name}</h3>

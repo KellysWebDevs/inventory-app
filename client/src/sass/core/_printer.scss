@@ -16,6 +16,10 @@
     font-size: 14pt;
   }
 
+  .category-card {
+    page-break-inside: avoid;
+  }
+
   // hide elements
   nav,
   h2,
