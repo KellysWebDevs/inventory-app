@@ -109,7 +109,7 @@ class ScanItemModal extends React.Component {
                       checked={this.state.selectedRadio === "add_item"}
                       onChange={this.handleRadioChange}
                     />
-                    <span>Add Item</span>
+                    <span>Add item to your inventory</span>
                   </label>
                 </p>
                 <p>
@@ -121,7 +121,7 @@ class ScanItemModal extends React.Component {
                       checked={this.state.selectedRadio === "sub_item"}
                       onChange={this.handleRadioChange}
                     />
-                    <span>Subtract Item</span>
+                    <span>Remove item from your inventory</span>
                   </label>
                 </p>
               </form>

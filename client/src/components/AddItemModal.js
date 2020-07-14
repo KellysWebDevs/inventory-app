@@ -122,7 +122,7 @@ class AddItemModal extends React.Component {
         <div className="modal-content">
           <h4 className="grey-text text-darken-2">Add New Item</h4>
 
-          <form onSubmit={this.handleSubmit} autoComplete="off">
+          <form id="add-form" onSubmit={this.handleSubmit} autoComplete="off">
             <div className="row">
               <div className="input-field col s12">
                 <input
@@ -205,23 +205,18 @@ class AddItemModal extends React.Component {
                 ))}
               </div>
             </div>
-
-            <div className="row">
-              <div className="col s12">
-                <button
-                  type="submit"
-                  className="btn white grey-text text-darken-3 waves-effect waves-green"
-                >
-                  <i className="material-icons right">add</i>
-                  Add
-                </button>
-              </div>
-            </div>
           </form>
         </div>
 
         <div className="modal-footer grey lighten-3">
-          <button className="modal-close btn-flat">Cancel</button>
+          <button
+            type="submit"
+            className="btn white grey-text text-darken-3 waves-effect waves-green"
+            form="add-form"
+          >
+            <i className="material-icons right">add</i>
+            Add
+          </button>
         </div>
       </div>
     );
