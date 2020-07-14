@@ -95,7 +95,7 @@ class NavBar extends React.Component {
               </ul>
             </div>
 
-            <ul>
+            <ul className="hide-on-med-and-down">
               <li className="black-text">
                 <i
                   className="material-icons ml-1"
