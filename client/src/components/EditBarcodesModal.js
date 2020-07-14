@@ -45,34 +45,32 @@ class EditBarcodesModal extends React.Component {
         }}
       >
         <div className="modal-content">
-          <h4 className="grey-text text-darken-2">Edit {item.name} Barcodes</h4>
+          <h4 className="grey-text text-darken-2">Add/Remove Barcodes</h4>
+          <h5>Item: {item.name}</h5>
 
           <div className="row">
             <div className="col s12">
-              <BarcodeScanner
-                onScanned={this.onScanned}
-                ref={(Scanner) => {
-                  this.Scanner = Scanner;
-                }}
-              />
-
+              <strong>Barcodes: </strong>{" "}
               {this.props.item_barcodes.map((barcode) => (
-                <div key={barcode} className="chip">
+                <div key={barcode} className="chip mt-1">
                   {barcode}{" "}
                   <i
                     className="material-icons"
-                    style={{ cursor: "pointer" }}
+                    style={{ cursor: "pointer", verticalAlign: "-0.4em" }}
                     onClick={() => this.props.removeBarcode(barcode)}
                   >
                     close
                   </i>
                 </div>
               ))}
+              <BarcodeScanner
+                onScanned={this.onScanned}
+                ref={(Scanner) => {
+                  this.Scanner = Scanner;
+                }}
+              />
             </div>
           </div>
-        </div>
-        <div className="modal-footer">
-          <button className="modal-close btn-flat">Close</button>
         </div>
       </div>
     );
