@@ -15,6 +15,8 @@ class Landing extends React.Component {
 
   componentDidMount() {
     this.tapTargetInstance = M.TapTarget.init(this.TapTarget, {});
+
+    M.Materialbox.init(this.Materialbox);
   }
 
   render() {
@@ -26,6 +28,17 @@ class Landing extends React.Component {
           </div>
         </div>
         <div className="row">
+          <div className="col s12">
+            <img
+              src="/inventory-manager.png"
+              alt="Inventory Manager"
+              className="materialboxed responsive-img mx-auto"
+              width="650"
+              ref={(Materialbox) => (this.Materialbox = Materialbox)}
+              data-caption="Inventory Manager Preview"
+            />
+          </div>
+
           <div className="col s12">
             <h4 className="flow-text">
               To experience my Inventory App, you MUST be logged into an
