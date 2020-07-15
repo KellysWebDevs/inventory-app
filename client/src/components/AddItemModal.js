@@ -164,6 +164,23 @@ class AddItemModal extends React.Component {
             </div>
 
             <div className="row">
+              <div className="col12">
+                {this.state.item_barcodes.map((barcode) => (
+                  <div key={barcode} className="chip">
+                    {barcode}
+                    <i
+                      className="material-icons ml-1"
+                      style={{ cursor: "pointer", verticalAlign: "-0.4em" }}
+                      onClick={() => this.removeBarcode(barcode)}
+                    >
+                      close
+                    </i>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="row">
               <div className="col s12">
                 <ul
                   className="collapsible"
@@ -190,19 +207,6 @@ class AddItemModal extends React.Component {
                     </div>
                   </li>
                 </ul>
-
-                {this.state.item_barcodes.map((barcode) => (
-                  <div key={barcode} className="chip">
-                    {barcode}
-                    <i
-                      className="material-icons"
-                      style={{ cursor: "pointer" }}
-                      onClick={() => this.removeBarcode(barcode)}
-                    >
-                      close
-                    </i>
-                  </div>
-                ))}
               </div>
             </div>
           </form>

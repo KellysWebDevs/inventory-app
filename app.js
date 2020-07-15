@@ -24,15 +24,15 @@ require("./config/passport")(passport);
 
 //-- ERROR HANDLERS --//
 // 404 Error Handler
-app.use(errorHandlers.notFound);
+// app.use(errorHandlers.notFound);
 
 // Development Error Handler prints stacktrace
-if (process.env.NODE_ENV === "development") {
-  app.use(errorHandlers.developmentErrors);
-}
+// if (process.env.NODE_ENV === "development") {
+//   app.use(errorHandlers.developmentErrors);
+// }
 
 // Production Error Handler
-app.use(errorHandlers.productionErrors);
+// app.use(errorHandlers.productionErrors);
 
 // PRODUCTION: serve up static files from the build folder
 if (process.env.NODE_ENV == "production") {
