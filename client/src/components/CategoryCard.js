@@ -12,7 +12,7 @@ class CategoryCard extends Component {
       >
         <div className="row">
           <div className="col s12">
-            <h3 className="center">{category.name}</h3>
+            <h3 className="category-name center">{category.name}</h3>
           </div>
         </div>
 

@@ -16,9 +16,8 @@
     font-size: 14pt;
   }
 
-  .category-card {
-    page-break-inside: avoid;
-    overflow: visible !important;
+  h3 {
+    page-break-before: always;
   }
 
   // hide elements
@@ -38,7 +37,6 @@
 
   @page {
     margin: 2cm;
-    margin-bottom: 0;
   }
 
   @page :first {
@@ -48,6 +46,10 @@
       content: "\ Your Personal Inventory";
       text-align: center !important;
     }
+  }
+
+  @page :last {
+    // page-break-inside: avoid;
   }
 
   @top-right {

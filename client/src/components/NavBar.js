@@ -199,13 +199,13 @@ class NavBar extends React.Component {
           </li>
 
           <li>
-            <a href="#!">
+            <a href="#scan-item-modal" className="modal-trigger">
               <InlineIcon
                 className="mr-2"
                 icon={barcodeScan}
                 width="24px"
                 height="24px"
-              />{" "}
+              />
               SCAN
             </a>
           </li>
