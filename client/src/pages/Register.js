@@ -14,6 +14,41 @@ class Register extends React.Component {
     errors: {},
   };
 
+  nameOk = false;
+  emailOk = false;
+  passOk = false;
+  confirmPassOk = false;
+
+  hovering = false;
+  focusing = false;
+
+  validateType = (option) => {
+    switch (option) {
+      case "name":
+        this.typeTimeout = setTimeout(() => {
+          this.nameOk = true;
+        }, 3000);
+        break;
+      case "email":
+        this.typeTimeout = setTimeout(() => {
+          this.emailOk = true;
+        }, 4000);
+        break;
+      case "password":
+        this.typeTimeout = setTimeout(() => {
+          this.passOk = true;
+        }, 3000);
+        break;
+      case "password2":
+        this.typeTimeout = setTimeout(() => {
+          this.confirmPassOk = true;
+        }, 3000);
+        break;
+      default:
+        clearTimeout(this.typeTimeout);
+    }
+  };
+
   handleChange = (e) => {
     this.setState({ [e.target.id]: e.target.value });
   };
@@ -23,14 +58,29 @@ class Register extends React.Component {
 
     const { name, email, password, password2 } = this.state;
 
-    const newUser = {
-      name,
-      email,
-      password,
-      password2,
-    };
+    if (
+      (this.nameOk &&
+        this.emailOk &&
+        this.passOk &&
+        this.confirmPassOk &&
+        this.hovering &&
+        this.focusing) ||
+      !name ||
+      !email ||
+      !password ||
+      !password2
+    ) {
+      const newUser = {
+        name,
+        email,
+        password,
+        password2,
+      };
 
-    this.props.registerUser(newUser, this.props.history);
+      this.props.registerUser(newUser, this.props.history);
+    } else {
+      this.props.history.push("/botform");
+    }
   };
 
   componentDidUpdate(prevProps) {
@@ -60,10 +110,13 @@ class Register extends React.Component {
                     value={this.state.name}
                     error={errors.name}
                     id="name"
+                    name="name"
                     type="text"
                     className={classnames("", {
                       invalid: errors.name,
                     })}
+                    onFocus={() => this.validateType("name")}
+                    onBlur={() => this.validateType()}
                   />
                   <label htmlFor="name">Name</label>
                   <span className="helper-text" data-error={errors.name}></span>
@@ -77,10 +130,13 @@ class Register extends React.Component {
                     value={this.state.email}
                     error={errors.email}
                     id="email"
+                    name="email"
                     type="email"
                     className={classnames("", {
                       invalid: errors.email,
                     })}
+                    onFocus={() => this.validateType("email")}
+                    onBlur={() => this.validateType()}
                   />
                   <label htmlFor="email">Email</label>
                   <span
@@ -97,10 +153,13 @@ class Register extends React.Component {
                     value={this.state.password}
                     error={errors.password}
                     id="password"
+                    name="password"
                     type="password"
                     className={classnames("", {
                       invalid: errors.password,
                     })}
+                    onFocus={() => this.validateType("password")}
+                    onBlur={() => this.validateType()}
                   />
                   <label htmlFor="password">Password</label>
                   <span
@@ -114,10 +173,13 @@ class Register extends React.Component {
                     value={this.state.password2}
                     error={errors.password2}
                     id="password2"
+                    name="password2"
                     type="password"
                     className={classnames("", {
                       invalid: errors.password2,
                     })}
+                    onFocus={() => this.validateType("password2")}
+                    onBlur={() => this.validateType()}
                   />
                   <label htmlFor="password2">Confirm Password</label>
                   <span
@@ -132,20 +194,16 @@ class Register extends React.Component {
                   <button
                     type="submit"
                     className="btn waves-effect waves-light"
+                    onMouseEnter={() => (this.hovering = true)}
+                    onMouseLeave={() => (this.hovering = false)}
+                    onFocus={() => (this.focusing = true)}
+                    onBlur={() => (this.focusing = false)}
                   >
                     Register
                   </button>
                 </div>
               </div>
             </form>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col s12">
-            <blockquote>
-              Already have an account? <a href="/login"> Login</a>
-            </blockquote>
           </div>
         </div>
       </div>

@@ -27,7 +27,9 @@ class Search extends Component {
           value={this.props.searchQuery}
           onChange={this.setSearchQuery}
         />
-        <label htmlFor="search">Search</label>
+        <label className="active" htmlFor="search">
+          Search
+        </label>
       </form>
     );
   }

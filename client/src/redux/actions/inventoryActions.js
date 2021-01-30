@@ -121,11 +121,6 @@ export const editItem = (itemInfo, categoryName) => (dispatch) => {
         type: SET_SINGLE_ITEM,
         payload: { itemInfo, categoryName },
       });
-
-      M.toast({
-        html: "Changes successfully saved!",
-        classes: "green",
-      });
     })
     .catch((err) => console.error(err));
 };

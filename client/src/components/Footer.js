@@ -87,7 +87,7 @@ class Footer extends React.Component {
 
   render() {
     return (
-      <footer className="page-footer orange lighten-1">
+      <footer className="page-footer black">
         {/*<div className="center">
           <canvas
             width={window.innerWidth / 1.3}
@@ -98,8 +98,19 @@ class Footer extends React.Component {
             }}
           ></canvas>
         </div>*/}
-        <div className="footer-copyright orange">
-          <div className="container">© 2020 Family I Love</div>
+        <div className="footer-copyright black">
+          <div className="container white-text">
+            © 2021 | Made with ♥ by{" "}
+            <a
+              style={{ textDecoration: "underline" }}
+              className="white-text"
+              href="https://kelly-devs-portfolio.herokuapp.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Kelly Web Devs
+            </a>
+          </div>
         </div>
       </footer>
     );

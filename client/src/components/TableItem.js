@@ -76,12 +76,13 @@ class TableItem extends React.Component {
   handleBlur = () => {
     if (!this.escaped) {
       this.props.editItem(
-        {
-          id: this.props.item._id,
-          ...this.state,
-        },
+        { id: this.props.item._id, ...this.state },
         this.props.item.category
       );
+      M.toast({
+        html: "Changes successfully saved!",
+        classes: "green",
+      });
     }
   };
 
@@ -94,6 +95,15 @@ class TableItem extends React.Component {
 
     if (window.confirm(`Are you sure you want to delete ${item.name}?`)) {
       this.props.deleteItem(this.props.item._id, this.props.itemsLength);
+    }
+  };
+
+  modalBlur = () => {
+    if (!this.escaped) {
+      this.props.editItem(
+        { id: this.props.item._id, ...this.state },
+        this.props.item.category
+      );
     }
   };
 
@@ -130,7 +140,7 @@ class TableItem extends React.Component {
           <td className="barcode-cell center-align">
             <button
               className="btn-flat dropdown-trigger"
-              data-target="action-dropdown"
+              data-target={`action-dropdown-${item._id}`}
               ref={(Dropdown) => (this.Dropdown = Dropdown)}
             >
               <InlineIcon
@@ -140,7 +150,7 @@ class TableItem extends React.Component {
               />
             </button>
 
-            <ul id="action-dropdown" className="dropdown-content">
+            <ul id={`action-dropdown-${item._id}`} className="dropdown-content">
               <li className="valign-wrapper">
                 <button
                   data-target={`${item._id}-modal`}
@@ -168,7 +178,7 @@ class TableItem extends React.Component {
               item={item}
               item_barcodes={this.state.item_barcodes}
               setBarcodeState={this.setBarcodeState}
-              handleBlur={this.handleBlur}
+              handleBlur={this.modalBlur}
               removeBarcode={this.removeBarcode}
             />
           </td>

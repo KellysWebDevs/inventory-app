@@ -44,17 +44,13 @@ class Landing extends React.Component {
               To experience my Inventory App, you MUST be logged into an
               account.
             </h4>
+            <h5>Test credentials are provided on the login page.</h5>
           </div>
         </div>
         <div className="row">
-          <div className="col s6">
+          <div className="col s12">
             <a href="/login" className="btn">
               Log In
-            </a>
-          </div>
-          <div className="col s6">
-            <a href="/register" className="btn lighten-2">
-              Register
             </a>
           </div>
         </div>

@@ -63,22 +63,3 @@ export const logoutUser = () => (dispatch) => {
   // Set current user to empty object which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
 };
-
-export const sendForgotEmail = (userData, history) => (dispatch) => {
-  axios
-    .post("/api/users/forgot", userData)
-    .then((res) => history.push("/"))
-    .catch((err) => dispatch(getErrors(err)));
-};
-
-export const resetUserPassword = (data, history) => (dispatch) => {
-  axios
-    .post("/api/users/reset", data)
-    .then((res) => {
-      loginUser(
-        { email: res.data.email, password: data.password },
-        history
-      )(dispatch);
-    })
-    .catch((err) => dispatch(getErrors(err)));
-};
