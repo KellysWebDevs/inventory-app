@@ -1,3 +1,3 @@
 # Inventory App
 
-## An Inventory with barcode scanning capability.
+## An inventory app with barcode scanning capability.
